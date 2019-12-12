@@ -1,14 +1,17 @@
 import React from 'react'
 import './GoogleMap.css';
-import './imgtemp.jpg'
 
 
 class GoogleMap extends React.Component {
-      
+    constructor({imgSrc, props}){
+        super(props)
+        this.imgSrc = imgSrc
+
+    }
     render(){
         return(
             <div className="map">
-                <img src="./imgtemp.jpg"></img>
+                <img src="#" alt="demo"></img>
             </div>  
         )
     }

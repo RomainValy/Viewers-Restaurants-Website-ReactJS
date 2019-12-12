@@ -9,3 +9,9 @@
     padding-left: 2em;
     padding-right: 2em;
 }
+
+.comment-section{
+    display: flex;
+    flex-direction: column;
+    border: solid blue 1px;
+}

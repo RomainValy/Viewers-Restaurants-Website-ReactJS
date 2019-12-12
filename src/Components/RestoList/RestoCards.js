@@ -1,39 +1,43 @@
 import React from 'react'
-import './RestoCards.css';
+import './RestoCards.css'
+
 
 
 class RestoCards extends React.Component {
-    constructor({name, hidden, props}){
+    constructor({name, rateAverage, comments, props}){
         super(props);
         this.name = name;
-        this.key = Number;
-        this.hidden = hidden;
+        this.rateAverage = rateAverage;
+        this.comments = [];
         this.state ={
-            starsAverage: null,
-            comments: [],
+            hidden : "none",
+            starsAverage: null,            
         }
-              
+    }
+    onclickHide(){
+        this.setState({ hidden: "none"})
     }
 
+    onclickShow(){
+        this.setState({hidden : "flex"})
+    }
 
     render(){
+        let i = 0;
         return(
-            <div className ="restoCard" key={`${this.props.key}`}  
-                onClick ={() => {this.props.hidden = "false" ? "true" : "false"
-                console.log(this.props.hidden)
+            <div className ="entireRestoCard" key={this.props.key}  
+                onClick ={(e) => {
+                    e.stopPropagation();
+                    this.state.hidden === "none" ? this.onclickShow() : this.onclickHide();
                 }}>
                 
-                <div>
+                <div className ="restoCard">
                     <p>{`${this.props.name}`}</p>
-                    <div>{this.state.starsAverage}</div>
+                    <div>{this.props.rateAverage}</div>
                 </div>
-                
-                <div aria-hidden= {this.props.hidden}>
+                <div className ="comment-section" style={{display: this.state.hidden}}>
 
-                    <p>{this.state.comments}</p>
-                                                                 
-                </div>
-                                
+                </div>             
             </div>
         )
     }

@@ -5,6 +5,7 @@ import Introduce from './Components/TopPage/Introduce'
 import RestoList from './Components/RestoList/RestoList'
 import GoogleMap from './Components/Map/GoogleMap.js'
 
+
 function App() {
   return (
     <div className="App">
@@ -12,7 +13,7 @@ function App() {
       <Introduce/>
         <div className="components">
             <div>
-              <GoogleMap/>
+              <GoogleMap imgSrc = "./imgtemp.jpg"/>
               
             </div>
           <RestoList/>

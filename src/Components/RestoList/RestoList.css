@@ -4,3 +4,14 @@
     border: solid blue 2px;
     
 }
+
+.entireRestoCard{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-section{
+    display: flex;
+    flex-direction: column;
+    border: solid blue 1px;
+}
