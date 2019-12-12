@@ -1,0 +1,13 @@
+import React from 'react'
+
+class Title extends React.Component {
+    render(){
+        return(
+            <h1>
+                I want to eat!
+            </h1>
+        )
+    }
+}
+
+export default Title

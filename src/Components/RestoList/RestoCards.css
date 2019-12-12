@@ -1,0 +1,11 @@
+.restoCard{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: solid black 1px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+    width: 200px;
+    padding-left: 2em;
+    padding-right: 2em;
+}

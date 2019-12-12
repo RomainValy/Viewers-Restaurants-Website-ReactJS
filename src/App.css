@@ -1,0 +1,13 @@
+.App {
+  display: grid;
+  text-align: center;
+ justify-content: center; 
+}
+
+.components{
+  display: flex;
+  width: max-content ;
+  border: solid black 2px;
+}
+
+
