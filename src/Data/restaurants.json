@@ -13,7 +13,11 @@
           {
              "stars":5,
              "comment":"Tout simplement mon restaurant préféré !"
-          }
+          },
+          {
+            "stars":2,
+            "comment":"Bof. pas terrible..."
+         }
        ]
     },
     {
@@ -24,11 +28,11 @@
        "long":2.3442197,
        "ratings":[
           {
-             "stars":5,
+             "stars":4,
              "comment":"Une minuscule pizzeria délicieuse cachée juste à côté du Sacré choeur !"
           },
           {
-             "stars":3,
+             "stars":2,
              "comment":"J'ai trouvé ça correct, sans plus"
           }
        ]
@@ -37,8 +41,8 @@
       
        "restaurantName":"Olivarius",
        "address":"17 rue chaland 44000 Rennes",
-       "lat":48.8865035,
-       "long":2.3442197,
+       "lat":48.8596235,
+       "long":2.3498452,
        "ratings":[
           {
              "stars":4,

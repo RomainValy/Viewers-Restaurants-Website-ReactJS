@@ -1,17 +1,26 @@
 .restoList{
-    align-items: center;
-    width: max-content;
-    border: solid blue 2px;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+    padding-top: 10px;
+     
     
 }
-
+.hide{
+    display: none;
+}
 .entireRestoCard{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .comment-section{
     display: flex;
+    width: 70%;
     flex-direction: column;
-    border: solid blue 1px;
+    align-items: center;
+    
 }

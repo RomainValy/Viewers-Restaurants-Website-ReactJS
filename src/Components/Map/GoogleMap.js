@@ -3,17 +3,16 @@ import './GoogleMap.css';
 
 
 class GoogleMap extends React.Component {
-    constructor({imgSrc, props}){
+    constructor({imgSrc, altValue, props}){
         super(props)
         this.imgSrc = imgSrc
+        this.altValue = altValue
 
     }
     render(){
-        return(
-            <div className="map">
-                <img src="#" alt="demo"></img>
-            </div>  
-        )
+        return <img className="map" src= {this.props.imgSrc} alt = {`${this.props.altValue}`}/>
+             
+        
     }
 }
 

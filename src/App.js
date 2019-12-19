@@ -13,7 +13,7 @@ function App() {
       <Introduce/>
         <div className="components">
             <div>
-              <GoogleMap imgSrc = "./imgtemp.jpg"/>
+              <GoogleMap imgSrc = "./imgtemp.jpg"  altValue = "demo"/>
               
             </div>
           <RestoList/>

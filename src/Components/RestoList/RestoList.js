@@ -2,33 +2,61 @@ import restaurants from '../../Data/restaurants.json'
 import React from 'react'
 import RestoCards from './RestoCards.js'
 import './RestoList.css'
-import CommentsLists from './CommentsList.js';
+import CommentItem from './CommentItem.js';
+import ButtonAddComment from './ButtonAddComment.js'
 
-console.log(restaurants);
 
 class RestoList extends React.Component {
-    
-    onclickHide(){
-        this.setState({ hidden: "none"})
+    constructor (props){
+        super(props)
+        this.state ={
+            changeClassName : "hide"
+        }
     }
 
-    onclickShow(){
-        this.setState({hidden : "block"})
+    calculateRateAverage(arr){
+        let result = [];
+        arr.map((e) => {
+            result.push(e.stars)
+        });
+        let average = result.reduce((accumulator, currentValue) => accumulator + currentValue);
+        return Math.round(average / arr.length)
+    }      
+     
+    
+
+    hideAndShow(){
+        this.state.changeClassName === "hide" ? this.setState({changeClassName : "comment-section"}) : this.setState({changeClassName : "hide"});
     }
     
     render(){
         return(
             <div className="restoList">
                 {restaurants.map((element) => (
-                   <div key ={element.restaurantName}>
-                       <RestoCards
-                            name = {element.restaurantName}                                 
-                            />
-                        {element.ratings.map((e) => (
-                            <CommentsLists
-                                comment = {e.comment}
-                            />
-                        ))}
+                   <div className ="entireRestoCard" 
+                        key ={element.restaurantName} 
+                        
+                        >
+
+                       <RestoCards onClick ={(e) => {
+                            e.stopPropagation();
+                            this.hideAndShow();
+                        }} 
+                            name = {element.restaurantName}
+                            rateAverage = {this.calculateRateAverage(element.ratings)}
+                                                 
+                        />
+                        <div className = {`${this.state.changeClassName}`}>
+                            {element.ratings.map((e) => (
+                                <CommentItem
+                                    key = {e.comment}
+                                    rate ={e.stars}
+                                    comment = {e.comment}
+                                />
+                            ))}
+                         <ButtonAddComment/>                                         
+                        </div>
+                        
                     </div>
                 ))}   
             </div>)
