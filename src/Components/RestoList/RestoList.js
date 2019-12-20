@@ -1,5 +1,5 @@
 import restaurants from '../../Data/restaurants.json'
-import React from 'react'
+import React, { Component } from 'react'
 import RestoCards from './RestoCards.js'
 import './RestoList.css'
 import CommentItem from './CommentItem.js';
@@ -34,19 +34,20 @@ class RestoList extends React.Component {
             <div className="restoList">
                 {restaurants.map((element) => (
                    <div className ="entireRestoCard" 
-                        key ={element.restaurantName} 
-                        
-                        >
-
-                       <RestoCards onClick ={(e) => {
+                    key ={element.restaurantName} 
+                        onClick ={(e) => {
                             e.stopPropagation();
                             this.hideAndShow();
-                        }} 
+                        }}
+                         
+                        >
+                       <RestoCards 
                             name = {element.restaurantName}
                             rateAverage = {this.calculateRateAverage(element.ratings)}
                                                  
                         />
-                        <div className = {`${this.state.changeClassName}`}>
+                        
+                        <div className = {this.state.changeClassName}>
                             {element.ratings.map((e) => (
                                 <CommentItem
                                     key = {e.comment}

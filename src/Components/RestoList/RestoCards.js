@@ -8,9 +8,7 @@ class RestoCards extends React.Component {
         super(props);
         this.name = name;
         this.rateAverage = rateAverage;
-        this.state ={
-            starsAverage: null,            
-        }
+        
     }
    
 
