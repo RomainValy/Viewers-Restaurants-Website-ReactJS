@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactModal from 'react-modal'
+//mport ReactModal from 'react-modal'
 import Rating from 'react-rating'
 
 class AddNewCommentForm extends React.Component  {
