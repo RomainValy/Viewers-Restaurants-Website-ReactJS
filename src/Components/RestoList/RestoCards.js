@@ -4,7 +4,7 @@ import Rating from 'react-rating'
 
 
 class RestoCards extends React.Component {
-    constructor({name, rateAverage, props}){
+    constructor({name, rateAverage, ...props}){
         super(props);
         this.name = name;
         this.rateAverage = rateAverage;

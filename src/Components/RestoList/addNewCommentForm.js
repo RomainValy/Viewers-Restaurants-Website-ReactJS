@@ -1,9 +1,8 @@
 import React from 'react'
-import ReactModal from 'react-modal'
 import Rating from 'react-rating'
 
 class AddNewCommentForm extends React.Component  {
-    constructor(props){
+    constructor({...props}){
         super(props)
         this.state = {
             rate : 0    

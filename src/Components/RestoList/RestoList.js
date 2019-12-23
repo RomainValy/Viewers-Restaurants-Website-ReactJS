@@ -1,5 +1,5 @@
 import restaurants from '../../Data/restaurants.json'
-import React, { Component } from 'react'
+import React from 'react'
 import RestoCards from './RestoCards.js'
 import './RestoList.css'
 import CommentItem from './CommentItem.js';
@@ -7,8 +7,8 @@ import ButtonAddComment from './ButtonAddComment.js'
 
 
 class RestoList extends React.Component {
-    constructor (props){
-        super(props)
+    constructor ({...props}){
+        super(props);
         this.state ={
             changeClassName : "hide"
         }
