@@ -2,16 +2,29 @@ import React from 'react'
 import Rating from 'react-rating'
 
 class AddNewCommentForm extends React.Component  {
-    constructor({...props}){
+    constructor({props}){
         super(props)
         this.state = {
-            rate : 0    
+            rate : 0,
+            comment: ''    
         }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange = e => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+
     }
     render(){
         return (
             
-               <form method="post">
+               <form onSubmit ={this.handleSubmit}>
                     <h1>Votre expérience</h1>
                         <div>
                         <Rating
@@ -31,9 +44,11 @@ class AddNewCommentForm extends React.Component  {
                         />
                         </div>
                         <div>
-                            <label for="comment">Dites nous en plus</label>
-                            <input type="text" id="comment" name="customerComment"></input>
+                            <label htmlFor="comment">Dites nous en plus</label>
+                            <textarea id="comment" onChange={this.handleChange}/>
+                            <button>Je dépose mon avis</button>
                         </div>
+                        
                 </form> 
             
             

@@ -25,34 +25,43 @@ class RestoList extends React.Component {
     }      
      
     
-    render(){
+    render(){ 
+
+
         return(
             <div className="restoList">
+                              
                 {restaurants.map((element, idx) => (
                    <div className ="entireRestoCard" 
                     key ={element.restaurantName} 
-                    onClick={() => this.setState({idxShow: idx})}
+                    onClick = {(e) => {
+                        e.stopPropagation();
+                        this.state.idxShow === -1 ? this.setState({idxShow: idx}) : this.setState({idxShow: -1})}}
                         >
-                       <RestoCards 
-                            name = {element.restaurantName}
-                            rateAverage = {this.calculateRateAverage(element.ratings)}
-                            showDetails={idx === this.state.idxShow}                
-                        >
-                            <div className="comment-section">
-                                {element.ratings.map((e) => (
-                                    <CommentItem
-                                        key = {e.comment}
-                                        rate ={e.stars}
-                                        comment = {e.comment}
-                                    />
-                                ))}
-                                <ButtonAddComment/>                                         
-                            </div>
-                        </RestoCards>
                         
+                            <RestoCards 
+                                    name = {element.restaurantName}
+                                    rateAverage = {this.calculateRateAverage(element.ratings)}
+                                    showDetails = {idx === this.state.idxShow} 
+                                                
+                                >
+                                    <div className="comment-section">
+                                        {element.ratings.map((e) => (
+                                            <CommentItem
+                                                key = {e.comment}
+                                                rate ={e.stars}
+                                                comment = {e.comment}
+                                            />
+                                        ))}                                         
+                                    </div>
+                                    <ButtonAddComment/>       
+                            </RestoCards>
                     </div>
-                ))}   
-            </div>)
+                ))}
+                    
+                                                                
+            </div>
+        )
     }  
 }
 

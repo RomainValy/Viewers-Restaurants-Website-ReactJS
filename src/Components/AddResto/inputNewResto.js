@@ -1,14 +1,17 @@
 import React from 'react'
+import NewRestoForm from './NewRestoForm'
+import Modal from '../Modal'
 
 class ButtonAddResto extends React.Component{
     
     render(){
         return <div>
-                    <button onClick = {(e) => {
-                        e.stopPropagation();
-                        console.log(this);
-                    }}> ajoutes votre établissement
-                    </button>
+                    <Modal
+                        modalName = {"addRestaurant"}
+                        buttonText = {"ajoutez votre établissement"}
+                    >
+                        <NewRestoForm/>
+                    </Modal>
                 </div>
     }
 }
