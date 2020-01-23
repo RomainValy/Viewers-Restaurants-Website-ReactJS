@@ -1,5 +1,5 @@
 import React from 'react'
-import './GoogleMap.css';
+
 
 
 class GoogleMap extends React.Component {
@@ -10,7 +10,7 @@ class GoogleMap extends React.Component {
 
     }
     render(){
-        return <img className="map" src= {this.props.imgSrc} alt = {`${this.props.altValue}`}/>
+        return <img className="Map" src= {this.props.imgSrc} alt = {`${this.props.altValue}`}/>
              
         
     }

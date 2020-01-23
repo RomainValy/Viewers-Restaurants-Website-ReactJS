@@ -14,7 +14,6 @@
 .comment-section{
     display: flex;
     align-self: center;
-    width: auto;
     flex-direction: column;
     border: solid blue 1px;
 }

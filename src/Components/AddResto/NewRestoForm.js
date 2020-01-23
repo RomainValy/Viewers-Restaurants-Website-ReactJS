@@ -22,7 +22,8 @@ class NewResto extends React.Component  {
     }
 
     
-    handleSubmit = () => {
+    handleSubmit = e => {
+        e.preventDefault();
         restaurants.push(this.state)
         console.log(restaurants)
     }

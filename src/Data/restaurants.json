@@ -53,5 +53,39 @@
              "comment":"j'ai faim"
           }
        ]
-    }
+    },
+    {
+      
+      "restaurantName":"Le Patio",
+      "address":"8 rue jacque Kennedy, 75019 Paris",
+      "lat":48.8865035,
+      "long":2.3442197,
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"c'était génial j'y retournerais"
+         },
+         {
+            "stars":2,
+            "comment":"Cher pour ce que c'est."
+         }
+      ]
+   },
+   {
+      
+      "restaurantName":"Marché frais",
+      "address":"74 place Sébastopole, 75001 Paris",
+      "lat":48.8865035,
+      "long":2.3442197,
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"il était un petit navire"
+         },
+         {
+            "stars":2,
+            "comment":"qui n'avait ja ja jamais navigué"
+         }
+      ]
+   } 
  ]
