@@ -1,10 +1,11 @@
 import React from 'react'
-import restaurants from '../../Data/restaurants.json'
+
 
 class NewResto extends React.Component  {
     
     constructor(props){
         super(props)
+        this.addResto = props.addResto
         this.state = {
             restaurantName: null,
             adress: null,
@@ -24,14 +25,15 @@ class NewResto extends React.Component  {
     
     handleSubmit = e => {
         e.preventDefault();
-        restaurants.push(this.state)
-        console.log(restaurants)
+        this.addResto(this.state)
+        console.log(this.props.list)
     }
 
 
     render(){
         return (
-                <div>
+            
+                    <div>
                     <form onSubmit ={this.handleSubmit}>
                         <h1>Votre établissement</h1>
                             
@@ -48,9 +50,7 @@ class NewResto extends React.Component  {
                             
                     </form>   
                 </div>
-               
-            
-            
+              
         )
     }
 

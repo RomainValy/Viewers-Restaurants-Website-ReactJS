@@ -1,4 +1,5 @@
 import React from 'react'
+import StarsRate from '../StarsRate/StarsRate'
 import './RestoCards.css'
 
 
@@ -16,6 +17,7 @@ class RestoCards extends React.Component {
         return(
                           
                 <div className ="restoCard" >
+                    <StarsRate/>
                     <p>{`${this.props.name}`}</p>
                     
                         {this.props.showDetails && this.props.children}

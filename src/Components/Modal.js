@@ -43,9 +43,8 @@ class Modal extends React.Component {
                         {this.props.children}
                         <button onClick = {(e) => {
                                 e.stopPropagation();
-                                e.preventDefault();
                                 this.closeModal()
-                                
+                                e.preventDefault();   
                             }}
                                 >Close</button>
                     </div>

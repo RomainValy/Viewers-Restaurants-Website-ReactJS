@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default React.createContext({
+const Context = React.createContext({
     list: [],
-    update : () =>  {}
-});
+    addResto : () =>  {}
+})
+
+export default Context
