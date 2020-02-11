@@ -34,7 +34,7 @@ class NewResto extends React.Component  {
         return (
             
                     <div>
-                    <form onSubmit ={this.handleSubmit}>
+                    <form>
                         <h1>Votre établissement</h1>
                             
                     
@@ -44,7 +44,7 @@ class NewResto extends React.Component  {
                         <label htmlFor="adress"> Adresse </label>
                             <input type="text" id="adress" onChange={this.handleChange} required/>
                         
-                            <button> Ajouter mon restaurant </button>
+                            <button onClick = {this.handleSubmit}> Ajouter mon restaurant </button>
                             
                             
                             

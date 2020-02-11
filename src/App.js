@@ -10,10 +10,11 @@ import InputNewResto from './Components/AddResto/inputNewResto'
 const initRestoList = restaurants.slice(0, restaurants.length)
 
 class App extends React.Component {
-  constructor({props}){
-    super({props});
+  constructor(props){
+    super(props);
     this.state = {
       restoList : initRestoList,
+      currentResto: null
     }
   };
 
@@ -21,15 +22,28 @@ class App extends React.Component {
     this.setState({restoList : [...this.state.restoList, resto]})
   }
 
+  addComment = (comment) => {
+    const result = this.state.restoList
+    const currentRestoComment = result.find(({restaurantName}) => {
+      return restaurantName === this.state.currentResto.name
+    })
+    currentRestoComment.ratings.push(comment)
+    this.setState({restoList: result})
+  }
+
   render(){
     return (
       <div className="App">
-        <Context.Provider value = {{restoList : this.state.restoList, addResto: this.addResto}}>
+        <Context.Provider value = {{restoList : this.state.restoList, 
+                                    addResto: this.addResto,
+                                    currentResto: this.state.currentResto,
+                                    setCurrentResto : (currentResto) => this.setState({currentResto}),
+                                    addComment: this.addComment}}>
               <Header/>
               
                   
               <RestoList /> 
-              <GoogleMap imgSrc = "./imgtemp.jpg"  altValue = "demo"/>
+              <GoogleMap/>
             
                 <InputNewResto/>
             

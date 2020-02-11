@@ -2,7 +2,7 @@ import React from 'react'
 
 import './CommentItem.css'
 class CommentItem extends React.Component{
-    constructor({comment, rate, key, ...props}){
+    constructor(comment, rate, key, props){
         super(props);
         this.rate = rate;
         this.comment = comment;
@@ -11,7 +11,7 @@ class CommentItem extends React.Component{
 
     render(){
         return(
-            <div className ="commentItem" key ={this.props.key}> 
+            <div className ="commentItem"> 
                 <p>{this.props.comment}</p>
             </div>
         )      

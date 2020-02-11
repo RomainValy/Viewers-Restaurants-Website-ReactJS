@@ -40,9 +40,9 @@
     {
       
        "restaurantName":"Olivarius",
-       "address":"17 rue chaland 44000 Rennes",
-       "lat":48.8596235,
-       "long":2.3498452,
+       "address":"31 Avenue George V, 75008 Paris",
+       "lat":48.869134, 
+       "long":2.300608,
        "ratings":[
           {
              "stars":4,
@@ -57,9 +57,9 @@
     {
       
       "restaurantName":"Le Patio",
-      "address":"8 rue jacque Kennedy, 75019 Paris",
-      "lat":48.8865035,
-      "long":2.3442197,
+      "address":"18 Rue Lauriston, 75016 Paris",
+      "lat":48.871914,
+      "long":2.292271,
       "ratings":[
          {
             "stars":4,
@@ -74,9 +74,9 @@
    {
       
       "restaurantName":"Marché frais",
-      "address":"74 place Sébastopole, 75001 Paris",
-      "lat":48.8865035,
-      "long":2.3442197,
+      "address":"16bis Rue Lauriston, 75116 Paris",
+      "lat":48.845292,
+      "long":2.373373,
       "ratings":[
          {
             "stars":4,

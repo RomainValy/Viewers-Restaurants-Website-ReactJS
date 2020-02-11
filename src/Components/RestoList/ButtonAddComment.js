@@ -2,19 +2,29 @@
 
 import React from 'react'
 import Modal from '.././Modal'
+import Context from '../RestaurantsContext'
 import AddNewComment from './addNewCommentForm'
 
 class ButtonAddComment extends React.Component{
+
     
     render(){
-        return <div >
-                    <Modal
-                        modalName = {"addComment"}
-                        buttonText = {"ajoutez votre commentaire"}
-                    >
-                        <AddNewComment/>
-                    </Modal>
-                </div>
+        return <>
+                <Context.Consumer>
+                        {({addComment}) => (
+                            <Modal
+                               onOpen  = {this.props.onClick}
+                                modalName = {"addComment"}
+                                buttonText = {"ajoutez votre commentaire"}
+                            >
+                                
+                                    <AddNewComment addComment = {addComment}
+                                    />
+                            </Modal>
+                                
+                        )}   
+                    </Context.Consumer>
+                </>
     }
 }
 

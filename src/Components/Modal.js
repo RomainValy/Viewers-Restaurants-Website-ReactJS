@@ -2,8 +2,9 @@ import React from 'react'
 import './Modal.css'
 
 class Modal extends React.Component {
-    constructor({modalName, buttonText, ...props}){
+    constructor(props){
         super(props);
+        this.onOpen = props.onOpen || (() => null);
         this.modalName = "";
         this.buttonText = "";
         this.state= {
@@ -24,9 +25,13 @@ class Modal extends React.Component {
 
     render(){
         return (
-            <div>
-                <button onClick ={(e) => { 
-                    this.openModal() 
+            <div onClick = {(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            }}>
+                <button onClick ={(e) => {
+                    this.onOpen(); 
+                    this.openModal(); 
                     e.preventDefault();
                     e.stopPropagation();
                 }}
@@ -42,9 +47,9 @@ class Modal extends React.Component {
                     <div className ="modalWrapper">
                         {this.props.children}
                         <button onClick = {(e) => {
-                                e.stopPropagation();
                                 this.closeModal()
-                                e.preventDefault();   
+                                e.preventDefault();
+                                e.stopPropagation();   
                             }}
                                 >Close</button>
                     </div>

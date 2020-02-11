@@ -1,11 +1,13 @@
 import React from 'react'
 import StarsRate from '../StarsRate/StarsRate'
+import Context from '../RestaurantsContext'
+import ButtonAddComment from './ButtonAddComment.js'
 import './RestoCards.css'
 
 
 
 class RestoCards extends React.Component {
-    constructor({name, rateAverage, ...props}){
+    constructor(name, rateAverage, props){
         super(props);
         this.name = name;
         this.rateAverage = rateAverage;
@@ -17,10 +19,21 @@ class RestoCards extends React.Component {
         return(
                           
                 <div className ="restoCard" >
-                    <StarsRate/>
+                    <StarsRate fixed = {true} value = {this.props.rateAverage}/>
                     <p>{`${this.props.name}`}</p>
                     
                         {this.props.showDetails && this.props.children}
+                    <Context.Consumer>
+                    {({addComment, setCurrentResto}) => (
+                            <ButtonAddComment addComment = {addComment}
+                            onClick = {() => {
+                                setCurrentResto({name: this.props.name})
+                            }}                  
+                            />
+                        )}    
+                        
+                    </Context.Consumer>    
+                    
                 </div>
         )
     }
