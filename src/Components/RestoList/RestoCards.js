@@ -21,7 +21,7 @@ class RestoCards extends React.Component {
                 <div className ="restoCard" >
                     <StarsRate fixed = {true} value = {this.props.rateAverage}/>
                     <p>{`${this.props.name}`}</p>
-                    
+                        
                         {this.props.showDetails && this.props.children}
                     <Context.Consumer>
                     {({addComment, setCurrentResto}) => (

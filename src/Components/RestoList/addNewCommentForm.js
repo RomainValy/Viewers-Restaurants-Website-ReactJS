@@ -6,7 +6,6 @@ class AddNewCommentForm extends React.Component  {
     constructor(props){
         super(props)
         this.addComment = props.addComment
-        console.info(props.addComment)
         this.state = {
             stars : 0,
             comment: ''    

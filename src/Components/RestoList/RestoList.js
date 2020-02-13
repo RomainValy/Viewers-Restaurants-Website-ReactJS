@@ -4,6 +4,8 @@ import Context from '../RestaurantsContext'
 import RestoCards from './RestoCards.js'
 import './RestoList.css'
 import CommentItem from './CommentItem.js'
+import Axios from 'axios'
+import ImgRestaurant from './ImgRestaurant'
 
 
 class RestoList extends React.Component {
@@ -50,17 +52,23 @@ class RestoList extends React.Component {
                                         name = {element.restaurantName}
                                         rateAverage = {element.ratings !== null ? this.calculateRateAverage(element.ratings): 0}
                                         showDetails = {idx === this.state.idxShow} 
-                                                    
+
                                     >
                                         <div className= "comment-section">
-                                       
-                                            {element.ratings.map((e) => (
-                                                <CommentItem
-                                                    key = { `${e.comment} - ${element.ratings.length}`}
-                                                    rate ={e.stars}
-                                                    comment = {e.comment}
-                                                />
-                                            ))}
+                                            <ImgRestaurant
+                                                lat = {element.lat}
+                                                lng = {element.long}
+                                                ApiKey = "#"
+                                                >
+                                            </ImgRestaurant> 
+
+                                                {element.ratings.map((e) => (
+                                                    <CommentItem
+                                                        key = { `${e.comment} - ${element.ratings.length}`}
+                                                        rate ={e.stars}
+                                                        comment = {e.comment}
+                                                    />
+                                                ))}
                                                                                      
                                         </div>         
                                 </RestoCards>

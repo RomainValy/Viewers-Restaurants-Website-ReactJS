@@ -14,7 +14,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       restoList : initRestoList,
-      currentResto: null
+      currentResto: null,
     }
   };
 
