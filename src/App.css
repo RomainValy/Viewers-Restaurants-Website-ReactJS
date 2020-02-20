@@ -6,7 +6,9 @@
  };
  
 .Restos {
-  grid-area: Restos;  
+  grid-area: Restos;
+  height: 100vh;
+  overflow: scroll;  
  }
  
 
@@ -26,7 +28,7 @@
 }
  .App{
    display: grid;
-   grid-template-columns: 2fr 1fr;
+   grid-template-columns: 1fr 2fr;
    grid-template-rows: auto;
    grid-template-areas: 
    " Header Header"

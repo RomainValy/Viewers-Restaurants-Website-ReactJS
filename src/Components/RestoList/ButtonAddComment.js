@@ -1,10 +1,9 @@
 // Button d'ouverture du formulaire AddNewComment (nouveau commentaire)
 
 import React from 'react'
-import Modal from '.././Modal'
 import Context from '../RestaurantsContext'
 import AddNewComment from './addNewCommentForm'
-
+import Modal from '.././Modal'
 class ButtonAddComment extends React.Component{
 
     

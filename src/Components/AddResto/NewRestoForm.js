@@ -7,8 +7,8 @@ class NewResto extends React.Component  {
         super(props)
         this.addResto = props.addResto
         this.state = {
-            restaurantName: null,
-            adress: null,
+            restaurantName: '',
+            adress: '',
             lat: null,
             long: null,
             ratings: []
@@ -33,23 +33,22 @@ class NewResto extends React.Component  {
     render(){
         return (
             
-                    <div>
                     <form>
                         <h1>Votre établissement</h1>
                             
+                        <div>
+                            <label htmlFor= "restaurantName"> Nom de l'établissement </label>
+                                <input type="text" id="restaurantName" defaultValue={this.state.restaurantName} onChange ={this.handleChange} required/>
+                        </div>
+                        <div>
+                            <label htmlFor="adress"> Adresse </label>
+                                <input type="text" id="adress" defaultValue={this.state.adress} onChange={this.handleChange} required/>
+                            
+                                <button onClick = {this.handleSubmit}> Ajouter mon restaurant </button>
+                        
+                        </div>   
                     
-                        <label htmlFor= "restaurantName"> Nom de l'établissement </label>
-                            <input type="text" id="restaurantName" onChange ={this.handleChange} required/>
-                        
-                        <label htmlFor="adress"> Adresse </label>
-                            <input type="text" id="adress" onChange={this.handleChange} required/>
-                        
-                            <button onClick = {this.handleSubmit}> Ajouter mon restaurant </button>
-                            
-                            
-                            
-                    </form>   
-                </div>
+                    </form> 
               
         )
     }

@@ -3,7 +3,15 @@
 }
 
 .Restos{
-display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 4px;
+  overflow: auto;
+      overflow-x: auto;
+      overflow-y: auto;
+  height: 90vh;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 10px 5px 5px gray;
+  border: solid gray 1px;
 }

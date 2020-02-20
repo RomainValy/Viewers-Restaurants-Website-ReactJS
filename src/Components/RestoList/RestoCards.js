@@ -7,10 +7,11 @@ import './RestoCards.css'
 
 
 class RestoCards extends React.Component {
-    constructor(name, rateAverage, props){
+    constructor(name, rateAverage, address, props){
         super(props);
         this.name = name;
         this.rateAverage = rateAverage;
+        this.address = address
     }
    
 
@@ -19,9 +20,10 @@ class RestoCards extends React.Component {
         return(
                           
                 <div className ="restoCard" >
-                    <StarsRate fixed = {true} value = {this.props.rateAverage}/>
+                    
                     <p>{`${this.props.name}`}</p>
-                        
+                    <p>{`${this.props.address}`}</p>
+                    <StarsRate fixed = {true} value = {this.props.rateAverage}/>    
                         {this.props.showDetails && this.props.children}
                     <Context.Consumer>
                     {({addComment, setCurrentResto}) => (

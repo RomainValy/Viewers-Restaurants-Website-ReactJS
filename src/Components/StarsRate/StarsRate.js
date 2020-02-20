@@ -2,9 +2,11 @@ import React from 'react'
 import Star from './Star'
 import EmptyStar from '../assets/star-empty.png'
 import FullStar from'../assets/star-full.png'
+import './StarRate.css'
+
 
 class StarsRate extends React.Component{
-    constructor(fixed, value, props){
+    constructor(props){
         super(props)
         this.fixed = true;
         this.value = 0;
@@ -52,7 +54,7 @@ class StarsRate extends React.Component{
         const starsMap = this.configStars()
 
         return(
-            <div>
+            <div className ="starsRate">
                 {starsMap}
             </div>
         )

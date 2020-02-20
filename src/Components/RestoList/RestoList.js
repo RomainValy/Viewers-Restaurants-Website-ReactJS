@@ -4,7 +4,6 @@ import Context from '../RestaurantsContext'
 import RestoCards from './RestoCards.js'
 import './RestoList.css'
 import CommentItem from './CommentItem.js'
-import Axios from 'axios'
 import ImgRestaurant from './ImgRestaurant'
 
 
@@ -22,11 +21,17 @@ class RestoList extends React.Component {
     
     calculateRateAverage = (arr) =>{
         let result = [];
-        arr.map((e) => {
-            result.push(e.stars)
-        });
-        let average = result.length > 0 ? result.reduce((accumulator, currentValue) => accumulator + currentValue) : null;
-        return Math.round(average / arr.length)
+        if(Array.isArray(arr) === true){
+            arr.map((e) => {
+                result.push(e.stars)
+            });
+            let average = result.length > 0 ? result.reduce((accumulator, currentValue) => accumulator + currentValue) : null;
+            return Math.round(average / arr.length)
+        } else {
+            return Math.round(arr)
+        }
+        
+        
     }      
     
     render(){ 
@@ -38,7 +43,7 @@ class RestoList extends React.Component {
                     
                     {restoList.map((element, idx) => (
                         <div className ="entireRestoCard" 
-                        key ={`${element.restaurantName} - ${element.ratings.length}`} 
+                        key ={`${element.lat} - ${element.lng} - ${element.index}`} 
                         onClick = {(e) => {
                             e.stopPropagation()
                             this.state.idxShow === -1 ? this.setState({idxShow: idx}) : this.setState({idxShow: -1})
@@ -50,7 +55,8 @@ class RestoList extends React.Component {
                                 <RestoCards
                                         
                                         name = {element.restaurantName}
-                                        rateAverage = {element.ratings !== null ? this.calculateRateAverage(element.ratings): 0}
+                                        address = {element.address}
+                                        rateAverage = {element.ratings !== null || undefined ? this.calculateRateAverage(element.ratings): 0}
                                         showDetails = {idx === this.state.idxShow} 
 
                                     >
@@ -59,16 +65,19 @@ class RestoList extends React.Component {
                                                 lat = {element.lat}
                                                 lng = {element.long}
                                                 ApiKey = "#"
+                                                alt = {element.restaurantName}
                                                 >
                                             </ImgRestaurant> 
 
-                                                {element.ratings.map((e) => (
-                                                    <CommentItem
-                                                        key = { `${e.comment} - ${element.ratings.length}`}
-                                                        rate ={e.stars}
-                                                        comment = {e.comment}
-                                                    />
-                                                ))}
+                                                {Array.isArray(element.ratings) === true ? 
+                                                    element.ratings.map((e) => (
+                                                        <CommentItem
+                                                            key = { `${e.index} - ${element.ratings.length}`}
+                                                            rate ={e.stars}
+                                                            comment = {e.comment}
+                                                        />
+                                                )) : null
+                                            }
                                                                                      
                                         </div>         
                                 </RestoCards>
@@ -81,8 +90,6 @@ class RestoList extends React.Component {
                 </div>)}
            
             </Context.Consumer>
-                
-            
             
         )
     }  

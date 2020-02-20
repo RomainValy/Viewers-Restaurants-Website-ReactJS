@@ -1,0 +1,41 @@
+.marker{
+    display: flex;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    transition:all 0.2s;
+    width: 50px;
+    height: 50px;
+}
+
+
+.text-marker-resto{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform : translate(-40%, -75%);
+    font-weight: bold;
+}
+.marker:hover {
+    transform: scale(1.2);
+    z-index: 1120;
+}
+
+.user{
+    display: flex;
+    position: relative;
+    text-align: center;
+    align-items: center;
+    transition:all 0.2s;
+    width: 50px;
+    height: 50px;
+}
+
+.text-marker-user{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform : translate(-40%, -75%);
+    font-weight: bold;
+    color: red;
+}

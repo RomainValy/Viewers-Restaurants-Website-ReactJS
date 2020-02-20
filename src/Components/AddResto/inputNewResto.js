@@ -6,20 +6,18 @@ import Modal from '../Modal'
 class ButtonAddResto extends React.Component{
     
     render(){
-        return <div>
-                    <Modal
-                        modalName = {"addRestaurant"}
-                        buttonText = {"ajoutez votre établissement"}
-                    >
-                        <Context.Consumer>
-                          {({addResto}) => (
-                            <NewRestoForm addResto = {addResto}/>   
-                          )}  
-                        </Context.Consumer>
-                    
-                                    
-                        
-                    </Modal>
+        return <div><Context.Consumer>
+                      {({addResto}) => (
+                        <Modal
+                            onOpen  = {this.props.onClick}
+                            modalName = {"addRestaurant"}
+                            buttonText = {"ajoutez votre établissement"}
+                        >
+                            
+                                <NewRestoForm addResto = {addResto}/>   
+                        </Modal>
+                      )}
+                    </Context.Consumer>
                 </div>
     }
 }

@@ -1,5 +1,6 @@
 .commentItem{
     display: flex;
+    flex-direction: column;
     align-items: baseline;
     width: 90%;
     box-shadow: 2px 2px 2px black;
@@ -8,10 +9,11 @@
 
 .commentItem :first-child{
     justify-self: flex-start;
+    width: auto
     
 }
 
 .commentItem :last-child{
     justify-self: flex-end;
-    width: 50%;
+    width: 100%;
 }
