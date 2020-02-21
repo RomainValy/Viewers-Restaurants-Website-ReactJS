@@ -19,7 +19,11 @@ class App extends React.Component {
       restoList : initRestoList,
       currentResto: null,
       apiKey : 'AIzaSyCsy-AdAPt8Tu8x9tMyq5Z-XGPbNQuFpag',
-      userPos: {}
+      userPos: {},
+      defaultCenter : {
+        lat : 48.8534,
+        lng : 2.3488
+      },
     }
     this.getUserPosition();
   };
@@ -29,11 +33,12 @@ class App extends React.Component {
     defaultRestoList : initRestoList
   };
 
+  
+    
   getUserPosition = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       if (position) {
           let result = {
-              
                   lat : position.coords.latitude,
                   lng : position.coords.longitude
                
@@ -42,16 +47,19 @@ class App extends React.Component {
           console.log(this.state.userPos)
           
       }else{
-              return null
+           return null
           }
       }
-  )        
+    )        
   }
+  
 
   addResto = (resto) => {
     this.setState({restoList : [...this.state.restoList, resto]})
   }
-
+  setRestoList = (newList) => {
+    this.setState({restoList : newList})
+  }
   addComment = (comment) => {
     const result = this.state.restoList
     const currentRestoComment = result.find(({restaurantName}) => {
@@ -64,28 +72,33 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <Context.Provider value = {{
+        <Context.Provider value = {{defaultCenter: this.state.defaultCenter,
                                     userPos : this.state.userPos,
                                     restoList : this.state.restoList, 
                                     addResto: this.addResto,
                                     currentResto: this.state.currentResto,
                                     apiKey : this.state.apiKey,
+                                    getUserPosition : this.getUserPosition,
                                     setCurrentResto : (currentResto) => this.setState({currentResto}),
-                                    addComment: this.addComment}}>
+                                    addComment: this.addComment,
+                                    setRestoList : this.setRestoList
+                                    }}>
               <Header/>
               
                   
               <RestoList />
               
-              
-                    <MapContainer
-                      apiKey = {this.state.apiKey}
-                      language = "fr"
-                      addResto = {this.addResto}
-                    />
-              
-                  {/* <GoogleMap apiKey = {this.state.apiKey}/> */}
-
+                <Context.Consumer>
+                {({restoList, userPos, addResto, defaultCenter, setRestoList}) => (
+                  <MapContainer
+                    apiKey = {this.state.apiKey}
+                    language = "fr"
+                    addResto = {this.addResto}
+                    setRestoList = {this.setRestoList} 
+                  />
+                )}
+                </Context.Consumer>            
+                   
               {/* <InputNewResto key= {this.state.restoList.length}/> */}
             
             

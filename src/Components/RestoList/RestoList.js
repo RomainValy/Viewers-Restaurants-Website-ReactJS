@@ -38,12 +38,12 @@ class RestoList extends React.Component {
         
         return( 
             <Context.Consumer>
-                {({restoList}) => (
+                {({restoList, apiKey}) => (
                     <div className="Restos">
                     
                     {restoList.map((element, idx) => (
                         <div className ="entireRestoCard" 
-                        key ={`${element.lat} - ${element.lng} - ${element.index}`} 
+                        key ={`${element.lat} - ${element.lng} - ${element.id}`} 
                         onClick = {(e) => {
                             e.stopPropagation()
                             this.state.idxShow === -1 ? this.setState({idxShow: idx}) : this.setState({idxShow: -1})
@@ -64,7 +64,7 @@ class RestoList extends React.Component {
                                             <ImgRestaurant
                                                 lat = {element.lat}
                                                 lng = {element.long}
-                                                ApiKey = "#"
+                                                ApiKey = {apiKey}
                                                 alt = {element.restaurantName}
                                                 >
                                             </ImgRestaurant> 

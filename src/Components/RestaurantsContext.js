@@ -5,10 +5,12 @@ const Context = React.createContext({
     currentResto: null,
     apiKey: '',
     userPos : {},
+    defaultCenter : {},
     getUserPosition : () => {},
     addResto : () =>  {},
+    setRestoList : () => {},
     setCurrentResto : () => {},
-    addComment : () => {}
+    addComment : () => {},
 })
 
 export default Context
