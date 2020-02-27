@@ -14,7 +14,7 @@ class ImgRestaurant extends Component {
 
     componentDidMount(){
         const request = `https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${this.props.lat},${this.props.lng}&key=${this.props.ApiKey}`
-        console.log(request)
+        
         
         axios.get(request)
         
@@ -25,6 +25,7 @@ class ImgRestaurant extends Component {
             .catch((error) => {
                 
                 console.log(error);
+                console.log(error.response.data.error) 
                 
             })
             .then(() => {
@@ -35,7 +36,7 @@ class ImgRestaurant extends Component {
     render(){
         return(
             <div>
-                <img src = {this.state.imgSrc}></img>
+                <img src = {this.state.imgSrc} alt ={"#"}></img>
             </div>
         )
     }

@@ -5,7 +5,6 @@ import Context from './Components/RestaurantsContext'
 import Header from './Components/Header'
 import RestoList from './Components/RestoList/RestoList'
 import MapContainer from './Components/Map2/MapContainer'
-import InputNewResto from './Components/AddResto/inputNewResto'
 
 
 
@@ -55,6 +54,7 @@ class App extends React.Component {
   
 
   addResto = (resto) => {
+    console.log("addResto")
     this.setState({restoList : [...this.state.restoList, resto]})
   }
   setRestoList = (newList) => {
@@ -97,11 +97,7 @@ class App extends React.Component {
                     setRestoList = {this.setRestoList} 
                   />
                 )}
-                </Context.Consumer>            
-                   
-              {/* <InputNewResto key= {this.state.restoList.length}/> */}
-            
-            
+                </Context.Consumer> 
         </Context.Provider>
         
       </div>
@@ -109,6 +105,7 @@ class App extends React.Component {
       );
   }
 }
-  
+ 
+
 
 export default App;

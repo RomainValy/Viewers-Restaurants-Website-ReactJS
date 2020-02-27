@@ -7,7 +7,7 @@ const Context = React.createContext({
     userPos : {},
     defaultCenter : {},
     getUserPosition : () => {},
-    addResto : () =>  {},
+    addResto : () =>  {console.log("addResto from Context")},
     setRestoList : () => {},
     setCurrentResto : () => {},
     addComment : () => {},

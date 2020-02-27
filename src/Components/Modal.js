@@ -51,7 +51,7 @@ class Modal extends React.Component {
                                 e.preventDefault();
                                 e.stopPropagation();   
                             }}
-                                >Close</button>
+                                >Fermer</button>
                     </div>
 
                     

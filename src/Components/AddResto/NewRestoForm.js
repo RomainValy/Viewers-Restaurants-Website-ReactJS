@@ -6,11 +6,15 @@ class NewResto extends React.Component  {
     constructor(props){
         super(props)
         this.addResto = props.addResto
+        this.closeModal = props.closeModal
+        this.restoList = props.restoList
+        this.lng = props.lng;
+        this.lat = props.lat;
         this.state = {
             restaurantName: '',
             adress: '',
-            lat: null,
-            long: null,
+            lat: this.props.lat,
+            long: this.props.lng,
             ratings: []
         }
         this.handleChange = this.handleChange.bind(this);
@@ -25,8 +29,12 @@ class NewResto extends React.Component  {
     
     handleSubmit = e => {
         e.preventDefault();
+        if(this.state.restaurantName)
         this.addResto(this.state)
-        console.log(this.props.list)
+        console.log(this.props.restoList)
+        console.log(this.state)
+        this.closeModal();
+        
     }
 
 
