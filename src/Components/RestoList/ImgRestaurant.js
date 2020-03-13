@@ -8,7 +8,8 @@ class ImgRestaurant extends Component {
        this.lng = lng;
        this.ApiKey = ApiKey
        this.state = {
-           imgSrc : ''
+           imgSrc : '',
+           key: ''
        }
     }
 
@@ -19,24 +20,28 @@ class ImgRestaurant extends Component {
         axios.get(request)
         
         .then((response) => {
-                console.log(response);
-                this.setState({imgSrc : request})
+                console.log("TCL: ImgRestaurant -> componentDidMount -> response", response.status)
+                this.setState({
+                    imgSrc : request,
+                    key: JSON.stringify(request)
+                })
             })
             .catch((error) => {
-                
-                console.log(error);
+                console.log("TCL: ImgRestaurant -> componentDidMount -> error", error)
                 console.log(error.response.data.error) 
                 
             })
             .then(() => {
-                return <div></div>
+                return <div>
+                    <p>la requete n'a pas aboutie</p>
+                </div>
             })
     }
 
     render(){
         return(
             <div>
-                <img src = {this.state.imgSrc} alt ={"#"}></img>
+                <img key={this.state.key} src = {this.state.imgSrc} alt ={"#"}></img>
             </div>
         )
     }

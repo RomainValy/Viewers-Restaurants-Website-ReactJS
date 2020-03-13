@@ -6,6 +6,7 @@ class Header extends React.Component {
             <div className ="Header">
                
                 <h1>I want to eat!</h1>
+                {this.props.children}
             </div>
             
         )

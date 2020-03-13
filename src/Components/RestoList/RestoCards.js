@@ -18,8 +18,11 @@ class RestoCards extends React.Component {
     render(){
         
         return(
-                          
-                <div className ="restoCard" >
+            <Context.Consumer>
+            {({fiterValue}) => (   
+                (fiterValue <= this.props.rateAverage) &&
+
+                    <div className ="restoCard">
                     
                     <p>{`${this.props.name}`}</p>
                     <p>{`${this.props.address}`}</p>
@@ -36,7 +39,9 @@ class RestoCards extends React.Component {
                         
                     </Context.Consumer>    
                     
-                </div>
+                </div>)
+            }
+        </Context.Consumer> 
         )
     }
 }

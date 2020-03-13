@@ -10,6 +10,7 @@ class CommentItem extends React.Component{
         this.key = key;
     }
 
+    
     render(){
         return(
             <div className ="commentItem"> 
