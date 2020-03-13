@@ -42,7 +42,7 @@ class RestoList extends React.Component {
   
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         //stock les données necessaires dans un objet qui correspond au state global
-        console.log("results requete google place", results);
+        console.log("results requete google place", results.reviews);
         // results.forEach(e => {
         //   finalResults.push({
             
@@ -54,12 +54,12 @@ class RestoList extends React.Component {
     };
   
   importCommentOnClick = (e, google, map) => {
-    map = this.props.map
-    google = this.props.google;
+    console.log("RestoList -> importCommentOnClick -> e", e)
     const service = new google.maps.places.PlacesService(map);
+    
     const request = {
       placeId: e.id,
-      fields: ['reviews']
+      fields: ['reviews.rating' , 'reviews.text']
     };
     console.log("RestoList -> importCommentOnClick -> request", request)
 
@@ -74,35 +74,12 @@ class RestoList extends React.Component {
   
 
   
-  // importCommentOnClick = (e, apiKey) => {
-  // console.log("RestoList -> importCommentOnClick -> apiKey", apiKey)
-  // console.log("RestoList -> importCommentOnClick -> e.id", e.id)
-
-    
-  //   const request = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${e.id}&fields=review&key=${apiKey}`
-        
-        
-  //       axios.get(request)
-        
-  //       .then((response) => {
-  //       console.log("RestoList -> importCommentOnClick -> response", response)
-                
-  //           })
-  //           .catch((error) => {
-  //               console.log("RestoList -> importCommentOnClick -> error", error)
-                
-  //           })
-  //           .then(() => {
-  //               return <div>
-  //                   <p>la requete n'a pas aboutie</p>
-  //               </div>
-  //           })
-  // }
+  // 
  
   render() {
     return (
       <Context.Consumer>
-        {({ restoList, apiKey}) => (
+        {({ restoList, apiKey, map, google}) => (
           <div className='Restos'>
             {restoList.map((element, idx) => (
            
@@ -110,7 +87,7 @@ class RestoList extends React.Component {
                 className='entireRestoCard'
                 key={`${element.lat} - ${element.lng} - ${element.id}`}
                 onClick={e => {
-                  this.importCommentOnClick(element, apiKey)
+                  this.importCommentOnClick(element, google, map)
                   e.stopPropagation();
                   this.state.idxShow === -1
                     ? this.setState({ idxShow: idx })

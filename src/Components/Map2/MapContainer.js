@@ -64,7 +64,7 @@ export class MapContainer extends Component {
           restaurantName: e.name,
           address: e.vicinity,
           ratings: e.rating,
-          id: e.id
+          id: e.place_id
         });
       });
 
@@ -77,8 +77,10 @@ export class MapContainer extends Component {
   };
 
   onMapReady = (mapProps, map) => {
+
     const { google } = mapProps;
     const service = new google.maps.places.PlacesService(map);
+    this.props.setMap(map);
     console.log("MapContainer -> onMapReady -> map", map);
     const request = {
       location: mapProps.center,

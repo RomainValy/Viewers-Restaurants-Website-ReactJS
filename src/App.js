@@ -45,7 +45,7 @@ class App extends React.Component {
       },
       filterValue: 0,
       google: props.google,
-      map: props.map
+      map: null
     };
     this.getUserPosition();
   }
@@ -53,6 +53,10 @@ class App extends React.Component {
   static defaultProps = {
     defaultRestoList: initRestoList
   };
+
+  setMap = (map) => {
+    this.setState({map})
+  }
 
   setFilterValue = value => {
     this.setState({ filterValue: value });
@@ -111,6 +115,7 @@ class App extends React.Component {
             addResto: this.addResto,
             currentResto: this.state.currentResto,
             apiKey: this.state.apiKey,
+            setMap: this.setMap,
             getUserPosition: this.getUserPosition,
             setCurrentResto: currentResto => this.setState({ currentResto }),
             addComment: this.addComment,
@@ -129,13 +134,15 @@ class App extends React.Component {
               userPos,
               addResto,
               defaultCenter,
-              setRestoList
+              setRestoList,
+              setMap,
             }) => (
               <MapContainer
+              setMap = {setMap}
                 apiKey={this.state.apiKey}
                 language='fr'
-                addResto={this.addResto}
-                setRestoList={this.setRestoList}
+                addResto={addResto}
+                setRestoList={setRestoList}
                 restoList={ restoList}
               />
             )}

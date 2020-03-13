@@ -9,6 +9,7 @@ const Context = React.createContext({
     fiterValue : '',
     google : null,
     map: null,
+    setMap : () => {},
     getRestoDetails : () => {},
     setFilterValue : () => {},
     getUserPosition : () => {},
