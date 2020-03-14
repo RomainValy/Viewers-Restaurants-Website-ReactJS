@@ -1,20 +1,22 @@
+/** @format */
+
 import React from "react";
 import Context from "../RestaurantsContext";
 import RestoCards from "./RestoCards.js";
 import "./RestoList.css";
 import CommentItem from "./CommentItem.js";
 import ImgRestaurant from "./ImgRestaurant";
-import axios from 'axios'
+import axios from "axios";
 
 class RestoList extends React.Component {
   constructor(props) {
     super(props);
-    this.google = props.google
-    this.map = props.map
+    this.google = props.google;
+    this.addComment = props.addComment;
     this.state = {
       ClassName: "hide",
       idxShow: -1,
-      currentComments : []
+      currentComments: []
     };
   }
 
@@ -34,101 +36,118 @@ class RestoList extends React.Component {
       return Math.round(arr);
     }
   };
-  
+
+  activateImportComment = (currentResto, element, google, map, addComment) => {
+    if (this.state.idxShow === -1) {
+      this.importCommentOnClick(element, google, map, addComment);
+    } else {
+      currentResto.ratings = [];
+    }
+  };
+
   onimportCommentOnClick = (results, status, google) => {
-    console.log("RestoList -> onimportCommentOnClick -> results", results)
-      
-      //let finalResults = [];
-  
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        //stock les données necessaires dans un objet qui correspond au state global
-        console.log("results requete google place", results.reviews);
-        // results.forEach(e => {
-        //   finalResults.push({
-            
-        //   });
-        }else {
-          console.log("erreur du reseau :" + status);
-        }
-        // application de la methode d'ajout de restaurant dispo dans le state globale 
-    };
-  
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      //stock les données necessaires dans un objet qui correspond au state global
+      results.reviews.forEach(e => {
+        this.addComment({
+          stars: e.rating,
+          comment: e.text
+        });
+      });
+    } else {
+      console.log("erreur du reseau :" + status);
+    }
+  };
+
   importCommentOnClick = (e, google, map) => {
-    console.log("RestoList -> importCommentOnClick -> e", e)
     const service = new google.maps.places.PlacesService(map);
-    
+
     const request = {
       placeId: e.id,
-      fields: ['reviews.rating' , 'reviews.text']
+      fields: ["reviews.rating", "reviews.text"]
     };
-    console.log("RestoList -> importCommentOnClick -> request", request)
+    console.log("RestoList -> importCommentOnClick -> request", request);
 
     // requete et appel de la fonction call back
     service.getDetails(request, (results, status) =>
-      
       this.onimportCommentOnClick.call(this, results, status, google)
     );
-
-    // initalise la fonction callback qui va traité la reponse de l'API
   };
-  
 
-  
-  // 
- 
+
+
+  hideAndSick = idx => {
+    this.state.idxShow === -1
+      ? this.setState({ idxShow: idx })
+      : this.setState({ idxShow: -1 });
+  };
   render() {
+
+
     return (
       <Context.Consumer>
-        {({ restoList, apiKey, map, google}) => (
+        {({
+          restoList,
+          apiKey,
+          map,
+          google,
+          addComment,
+          setCurrentResto,
+          currentResto
+        }) => (
           <div className='Restos'>
             {restoList.map((element, idx) => (
-           
-              <div                
+              <div
                 className='entireRestoCard'
                 key={`${element.lat} - ${element.lng} - ${element.id}`}
                 onClick={e => {
-                  this.importCommentOnClick(element, google, map)
+                  setCurrentResto({ name: element.restaurantName });
+
                   e.stopPropagation();
-                  this.state.idxShow === -1
-                    ? this.setState({ idxShow: idx })
-                    : this.setState({ idxShow: -1 });
-                    console.log("RestoList -> render -> idxShow", this.state.idxShow)
+                  this.hideAndSick(idx);
+                  this.activateImportComment(
+                    currentResto,
+                    element,
+                    google,
+                    map,
+                    addComment
+                  );
                   e.preventDefault();
                 }}>
-                
                 <RestoCards
                   name={element.restaurantName}
                   address={element.address}
                   rateAverage={
-                    element.ratings !== null || undefined
+                    !element.rateAverage
                       ? this.calculateRateAverage(element.ratings)
-                      : 0
+                      : element.rateAverage
                   }
                   showDetails={idx === this.state.idxShow}>
-                  
                   <div className='comment-section'>
-                    {this.state.idxShow !== -1 &&(
-                    <ImgRestaurant
-                      lat={element.lat}
-                      lng={element.long}
-                      ApiKey={apiKey}
-                      alt={element.restaurantName}/>
-                      )}
+                    {this.state.idxShow !== -1 && (
+                      <ImgRestaurant
+                        lat={element.lat}
+                        lng={element.long}
+                        ApiKey={apiKey}
+                        alt={element.restaurantName}
+                      />
+                    )}
 
-                    {Array.isArray(element.ratings) === true
-                      && element.ratings.map(e => (
-                          <CommentItem
-                            key={`${e.comment} - ${element.ratings.length}`}
-                            rate={e.stars}
-                            comment={e.comment}
-                          />
-                        ))
-                      }
+                    
+                    {/* {Array.isArray(element.ratings) === true && */}
+                      {element.ratings.map(e => (
+                        !element.ratings.key && 
+                        <CommentItem
+                          key={`${e.comment} - ${element.ratings.length}`}
+                          rate={e.stars}
+                          comment={e.comment}
+                        />
+                      ))}
                   </div>
                 </RestoCards>
-              </div> 
+              </div>
             ))}
-          </div> 
+          </div>
         )}
       </Context.Consumer>
     );

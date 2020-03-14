@@ -63,7 +63,8 @@ export class MapContainer extends Component {
           long: e.geometry.location.lng(),
           restaurantName: e.name,
           address: e.vicinity,
-          ratings: e.rating,
+          rateAverage : e.rating,
+          ratings: [],
           id: e.place_id
         });
       });

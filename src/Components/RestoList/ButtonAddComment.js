@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Context from '../RestaurantsContext'
-import AddNewComment from './addNewCommentForm'
+import AddNewCommentForm from './addNewCommentForm'
 import Modal from '.././Modal'
 class ButtonAddComment extends React.Component{
 
@@ -17,7 +17,7 @@ class ButtonAddComment extends React.Component{
                                 buttonText = {"ajoutez votre commentaire"}
                             >
                                 
-                                    <AddNewComment addComment = {addComment}
+                                    <AddNewCommentForm addComment = {addComment}
                                     />
                             </Modal>
                                 

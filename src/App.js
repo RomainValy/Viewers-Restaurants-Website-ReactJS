@@ -10,25 +10,7 @@ import MapContainer from "./Components/Map2/MapContainer";
 import Filter from "./Components/Filter";
 import { GoogleApiWrapper} from "google-maps-react";
 
-const initRestoList = [...restaurants].map(e => ({
-  ...e,
-  ratingAverage: () => {
-    let result = [];
-    if (e.ratings === true) {
-      e.ratings.map(e => result.push(e.stars));
-
-      let average =
-        result.length > 0
-          ? result.reduce(
-              (accumulator, currentValue) => accumulator + currentValue
-            )
-          : null;
-      return Math.round(average / e.ratings.length);
-    } else {
-      return Math.round(e.ratings);
-    }
-  }
-}));
+ const initRestoList = restaurants
 
 class App extends React.Component {
   constructor(props) {
@@ -70,16 +52,11 @@ class App extends React.Component {
           lng: position.coords.longitude
         };
         this.setState({ userPos: result });
-        console.log(
-          "TCL: App -> getUserPosition -> userPos",
-          this.state.userPos
-        );
       } else {
         this.setState({ userPos: { lat: 48.8534, lng: 2.3488 } });
         
       }
     });
-    console.log("app => state.map ", this.state.map)
   };
 
   addResto = resto => {
@@ -91,12 +68,10 @@ class App extends React.Component {
   };
   addComment = comment => {
     const result = this.state.restoList;
-    console.log("TCL: App -> result", result);
+
     const currentRestoComment = result.find(({ restaurantName }) => {
       return restaurantName === this.state.currentResto.name;
     });
-    console.log("TCL: App -> currentRestoComment", currentRestoComment);
-    console.log("TCL: App -> comment", comment);
     currentRestoComment.ratings.push(comment);
     this.setState({ restoList: result });
   };
@@ -126,6 +101,7 @@ class App extends React.Component {
           </Header>
 
           <RestoList google={this.state.google}
+                    addComment ={this.addComment}
            />
 
           <Context.Consumer>
