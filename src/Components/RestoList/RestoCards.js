@@ -20,7 +20,8 @@ class RestoCards extends React.Component {
         return(
             <Context.Consumer>
             {({fiterValue}) => (   
-                (fiterValue <= this.props.rateAverage) &&
+                (fiterValue.min <= Math.round(this.props.rateAverage) &&
+                    fiterValue.max >= this.props.rateAverage) &&
 
                     <div className ="restoCard">
                     

@@ -21,7 +21,7 @@ class AddNewCommentForm extends React.Component  {
     
     handleChangeStar = (index, value) => {
     return (
-        <img style={{width : 30, height: 30}} src ={index > value ? EmptyStar : FullStar}></img>  
+        <img style={{width : 30, height: 30}} src ={index > value ? EmptyStar : FullStar} alt="#"></img>  
         )
     }
 
@@ -39,11 +39,11 @@ class AddNewCommentForm extends React.Component  {
 
     
     render(){
-        const { rating } = this.state.stars;
+        
         return (
             <>
                 <div>
-                            <h2>Rating from state: {rating}</h2>
+                            <h3>Notez votre expérience: </h3>
                                 <StarRatingComponent 
                                
                                 name="notationSystem" 

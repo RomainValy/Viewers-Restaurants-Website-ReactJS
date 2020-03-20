@@ -6,45 +6,71 @@ class Filter extends Component {
       super(props);
       this.setFilterValue = props.setFilterValue
       this.state = {
-          value: 0
+          value: {
+            min: 0,
+            max: 5
+          },
+          maxOption : [0, 1, 2, 3, 4, 5],
+          minOption : [0, 1, 2, 3, 4, 5],
       }
     }
   
-    handleChange = e => {
-    
-      this.setState({value: Number(e.target.value)});
+    optionMax = (min, max) => {
+      
+      let result = [];
+      for(let i = min; i <= max; i++){
+        console.log("Filter -> OptionMax -> i", i)
+        result.push(Number(i))
+      }
+      console.log("Filter -> OptionMax -> result", result)
+      return result
     }
-  
+
+    handleChangeMin = e => {
+    
+      this.setState({value: {min : Number(e.target.value), max : this.state.value.max}});
+      const minOpt = this.optionMax(e.target.value, 5)
+      this.setState({maxOption: minOpt})
+    }
+    handleChangeMax = e => {
+    
+      this.setState({value: {min : this.state.value.min, max : Number(e.target.value)}});
+      const maxOpt = this.optionMax(0, e.target.value)
+      this.setState({minOption: maxOpt})
+    }
+
     handleSubmit = e => {
       this.setFilterValue(this.state.value)
+      console.log("Filter -> this.state.value", this.state.value)
       
       e.preventDefault();
     }
+
+
   
     render() {
+      
       return (
 
         <form>
           <label>
-            <p>Filtrer par note</p>
+            Filtrer par note
             
-            <select value={this.state.value} onChange={this.handleChange}>
-              <option value={5}> 5 </option>
-              <option value={4}> 4 et + </option>
-              <option value={3}> 3 et +</option>
-              <option value={2}> 2 et +</option>
-              <option value={1}> 1 et +</option>
-              <option value={0}> Tous </option>
+            <select value={this.state.value.min} onChange={this.handleChangeMin}>
+              {this.state.minOption.map(e => (
+                
+                <option key= {e + "est la valeur min"} value={e}>{`${e}`}</option>
+              )            
+              )}
+              
             </select>
-            {/* à: 
-            <select value={this.state.value.max} onChange={this.handleChange}>
-            <option value={5}> 5 </option>
-              <option value={4}> 4 et + </option>
-              <option value={3}> 3 et +</option>
-              <option value={2}> 2 et +</option>
-              <option value={1}> 1 et +</option>
-              <option value={0}> Tous </option>
-            </select> */}
+            à: 
+            <select value={this.state.value.max} onChange={this.handleChangeMax}>
+            {this.state.maxOption.map(e => (
+                <option key={e + "est la valeur max"} value={e}>{`${e}`}</option>
+              )                
+              )}
+            </select>
           </label>
           <button onClick = {this.handleSubmit}
                                 > Valider </button>

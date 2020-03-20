@@ -35,10 +35,12 @@ export class MapContainer extends Component {
   }
 
   handleOpenModal = () => {
+    
     this.setState({ showModal: true });
   };
 
   handleCloseModal = () => {
+    
     this.setState({ showModal: false });
   };
 
@@ -85,7 +87,7 @@ export class MapContainer extends Component {
     console.log("MapContainer -> onMapReady -> map", map);
     const request = {
       location: mapProps.center,
-      radius: "800",
+      radius: "1500",
       type: ["restaurant"],
       keyword: ["restaurant"],
       fields: ["name", "geometry.location", "vicinty", "reviews"]
@@ -113,6 +115,9 @@ export class MapContainer extends Component {
     });
   };
 
+  onMouseoverMarker(props, marker, e) {
+    // ..
+  }
   // -------- Ajout d'un restaurant avec levent onClick sur la page
 
   closeInfoWindow = () => {
@@ -137,9 +142,6 @@ export class MapContainer extends Component {
     this.handleOpenModal();
   };
 
-  // voir implantation de l'API Geocoder pour recup l'adresse à partir des coordonnées de OnMapClicked
-  getGeocode = (e, mapProps, map) => {};
-
   render() {
     const containerStyle = {
       position: "relative",
@@ -148,7 +150,7 @@ export class MapContainer extends Component {
     };
     return (
       <Context.Consumer>
-        {({ restoList, userPos, addResto, defaultCenter, setRestoList }) => (
+        {({ restoList, userPos, addResto, defaultCenter, setRestoList, map, google, fiterValue }) => (
           <>
           
             <Map
@@ -165,24 +167,27 @@ export class MapContainer extends Component {
                   onClick={this.onMarkerClick}
                   name={"Vous êtes ici"}
                   position={isNaN(userPos.lat) ? defaultCenter : userPos}
+                  className = "user"
                   icon={{
                     url: Bubble,
-                    anchor: new this.props.google.maps.Point(32, 32),
-                    scaledSize: new this.props.google.maps.Size(64, 64)
+                    anchor: new google.maps.Point(32, 32),
+                    scaledSize: new google.maps.Size(64, 64)
                   }}
                   label={"You"}
                 />
               )}
 
               {restoList.map(e =>
-                e.lat || e.lng !== undefined ? (
+                ((e.lat || e.lng !== undefined) && 
+                (fiterValue.min <= Math.round(e.rateAverage) &&
+                fiterValue.max >= e.rateAverage)) &&
                   <Marker
                     onClick={this.onMarkerClick}
                     key={`${e.lat} - ${e.long} - ${e.id}`}
                     position={{ lat: e.lat, lng: e.long }}
+                    animation = {google.maps.Animation.DROP}
                     name={`${e.restaurantName}`}
                   />
-                ) : null
               )}
 
               <InfoWindow
@@ -199,13 +204,13 @@ export class MapContainer extends Component {
               isOpen={this.state.showModal}
               appElement={document.getElementById("root")}>
               <NewRestoForm
+                google = {this.props.google}
                 addResto={addResto}
                 closeModal={this.handleCloseModal}
                 lng={this.state.newRestoCoordinate.lng}
                 lat={this.state.newRestoCoordinate.lat}
                 restoList={restoList}
               />
-              <button onClick={this.handleCloseModal}>Close Modal</button>
             </ReactModal>
           </>
         )}

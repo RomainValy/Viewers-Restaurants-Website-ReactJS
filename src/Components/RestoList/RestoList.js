@@ -6,17 +6,17 @@ import RestoCards from "./RestoCards.js";
 import "./RestoList.css";
 import CommentItem from "./CommentItem.js";
 import ImgRestaurant from "./ImgRestaurant";
-import axios from "axios";
 
 class RestoList extends React.Component {
   constructor(props) {
     super(props);
     this.google = props.google;
     this.addComment = props.addComment;
+    this.setCurrentResto = props.setCurrentResto;
     this.state = {
       ClassName: "hide",
       idxShow: -1,
-      currentComments: []
+      currentComments: [],
     };
   }
 
@@ -37,16 +37,17 @@ class RestoList extends React.Component {
     }
   };
 
-  activateImportComment = (currentResto, element, google, map, addComment) => {
+  activateImportComment = (element, google, map, addComment) => {
     if (this.state.idxShow === -1) {
       this.importCommentOnClick(element, google, map, addComment);
     } else {
-      currentResto.ratings = [];
+      return null;
     }
   };
 
   onimportCommentOnClick = (results, status, google) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
+      console.log("RestoList -> onimportCommentOnClick -> results.reviews", results.reviews)
       //stock les données necessaires dans un objet qui correspond au state global
       results.reviews.forEach(e => {
         this.addComment({
@@ -74,16 +75,12 @@ class RestoList extends React.Component {
     );
   };
 
-
-
   hideAndSick = idx => {
     this.state.idxShow === -1
       ? this.setState({ idxShow: idx })
       : this.setState({ idxShow: -1 });
   };
   render() {
-
-
     return (
       <Context.Consumer>
         {({
@@ -102,15 +99,14 @@ class RestoList extends React.Component {
                 key={`${element.lat} - ${element.lng} - ${element.id}`}
                 onClick={e => {
                   setCurrentResto({ name: element.restaurantName });
-
                   e.stopPropagation();
                   this.hideAndSick(idx);
                   this.activateImportComment(
-                    currentResto,
                     element,
                     google,
                     map,
-                    addComment
+                    addComment,
+                    currentResto
                   );
                   e.preventDefault();
                 }}>
@@ -132,17 +128,13 @@ class RestoList extends React.Component {
                         alt={element.restaurantName}
                       />
                     )}
-
-                    
-                    {/* {Array.isArray(element.ratings) === true && */}
-                      {element.ratings.map(e => (
-                        !element.ratings.key && 
-                        <CommentItem
-                          key={`${e.comment} - ${element.ratings.length}`}
-                          rate={e.stars}
-                          comment={e.comment}
-                        />
-                      ))}
+                    {element.ratings.map(e => (
+                      <CommentItem
+                        key={`${e.comment} - ${element.ratings.length}`}
+                        rate={e.stars}
+                        comment={e.comment}
+                      />
+                    ))}
                   </div>
                 </RestoCards>
               </div>

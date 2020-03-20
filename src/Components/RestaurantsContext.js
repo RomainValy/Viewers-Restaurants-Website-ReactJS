@@ -1,12 +1,12 @@
 import React from 'react'
 
 const Context = React.createContext({
-    list: [],
+    restoList: [],
     currentResto: null,
     apiKey: '',
     userPos : {},
     defaultCenter : {},
-    fiterValue : '',
+    fiterValue : {},
     google : null,
     map: null,
     setMap : () => {},

@@ -14,16 +14,7 @@ class StarsRate extends React.Component{
             empty: EmptyStar,
             full: FullStar
         }
-        this.handleChange = this.handleChange.bind(this)
-    }
-
-
-    handleChange = e => {
         
-    }
-
-    handleFixed = e => {
-
     }
 
     configStars = () => {

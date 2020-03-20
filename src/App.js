@@ -8,9 +8,9 @@ import Header from "./Components/Header";
 import RestoList from "./Components/RestoList/RestoList";
 import MapContainer from "./Components/Map2/MapContainer";
 import Filter from "./Components/Filter";
-import { GoogleApiWrapper} from "google-maps-react";
+import { GoogleApiWrapper } from "google-maps-react";
 
- const initRestoList = restaurants
+const initRestoList = restaurants;
 
 class App extends React.Component {
   constructor(props) {
@@ -19,13 +19,16 @@ class App extends React.Component {
     this.state = {
       restoList: initRestoList,
       currentResto: null,
-      apiKey : "AIzaSyCsy-AdAPt8Tu8x9tMyq5Z-XGPbNQuFpag",
-      userPos: {lat: 48.8534, lng: 2.3488},
+      apiKey: "AIzaSyCsy-AdAPt8Tu8x9tMyq5Z-XGPbNQuFpag",
+      userPos: { lat: 48.8534, lng: 2.3488 },
       defaultCenter: {
         lat: 48.8534,
         lng: 2.3488
       },
-      filterValue: 0,
+      filterValue: {
+        min: 0,
+        max: 5
+      },
       google: props.google,
       map: null
     };
@@ -36,9 +39,9 @@ class App extends React.Component {
     defaultRestoList: initRestoList
   };
 
-  setMap = (map) => {
-    this.setState({map})
-  }
+  setMap = map => {
+    this.setState({ map });
+  };
 
   setFilterValue = value => {
     this.setState({ filterValue: value });
@@ -54,17 +57,20 @@ class App extends React.Component {
         this.setState({ userPos: result });
       } else {
         this.setState({ userPos: { lat: 48.8534, lng: 2.3488 } });
-        
       }
     });
   };
 
   addResto = resto => {
-    this.setState({ restoList: [...this.state.restoList, resto] });
+    let result = this.state.restoList
+    result.push(resto)
+    this.setState({ restoList: result });
+    //this.setState({restoList: [...this.state.restoList, resto]})
   };
+
   setRestoList = newList => {
     this.setState({ restoList: newList });
-    console.log("App -> newList", newList)
+    console.log("App -> newList", newList);
   };
   addComment = comment => {
     const result = this.state.restoList;
@@ -72,8 +78,17 @@ class App extends React.Component {
     const currentRestoComment = result.find(({ restaurantName }) => {
       return restaurantName === this.state.currentResto.name;
     });
-    currentRestoComment.ratings.push(comment);
-    this.setState({ restoList: result });
+    // si le commentaire n'existe pas déjà, on l'ajoute à la liste
+    if (
+      currentRestoComment.ratings.every(
+        elem => elem.comment !== comment.comment
+      ) === true
+    ) {
+      currentRestoComment.ratings.push(comment);
+      this.setState({ restoList: result });
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -81,7 +96,7 @@ class App extends React.Component {
       <div className='App'>
         <Context.Provider
           value={{
-            map : this.state.map,
+            map: this.state.map,
             google: this.state.google,
             fiterValue: this.state.filterValue,
             defaultCenter: this.state.defaultCenter,
@@ -99,11 +114,16 @@ class App extends React.Component {
           <Header>
             <Filter setFilterValue={this.setFilterValue} />
           </Header>
-
-          <RestoList google={this.state.google}
-                    addComment ={this.addComment}
-           />
-
+          <Context.Consumer>
+            {({ setCurrentResto, google, map, addComment }) => (
+              <RestoList
+                google={google}
+                map={map}
+                addComment={addComment}
+                setCurrentResto={setCurrentResto}
+              />
+            )}
+          </Context.Consumer>
           <Context.Consumer>
             {({
               restoList,
@@ -111,15 +131,15 @@ class App extends React.Component {
               addResto,
               defaultCenter,
               setRestoList,
-              setMap,
+              setMap
             }) => (
               <MapContainer
-              setMap = {setMap}
+                setMap={setMap}
                 apiKey={this.state.apiKey}
                 language='fr'
                 addResto={addResto}
                 setRestoList={setRestoList}
-                restoList={ restoList}
+                restoList={restoList}
               />
             )}
           </Context.Consumer>
