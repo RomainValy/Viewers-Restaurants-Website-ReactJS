@@ -16,7 +16,7 @@ class RestoList extends React.Component {
     this.state = {
       ClassName: "hide",
       idxShow: -1,
-      currentComments: [],
+      currentComments: []
     };
   }
 
@@ -47,7 +47,10 @@ class RestoList extends React.Component {
 
   onimportCommentOnClick = (results, status, google) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      console.log("RestoList -> onimportCommentOnClick -> results.reviews", results.reviews)
+      console.log(
+        "RestoList -> onimportCommentOnClick -> results.reviews",
+        results.reviews
+      );
       //stock les données necessaires dans un objet qui correspond au state global
       results.reviews.forEach(e => {
         this.addComment({
@@ -92,54 +95,55 @@ class RestoList extends React.Component {
           setCurrentResto,
           currentResto
         }) => (
-          <div className='Restos'>
-            {restoList.map((element, idx) => (
-              <div
-                className='entireRestoCard'
-                key={`${element.lat} - ${element.lng} - ${element.id}`}
-                onClick={e => {
-                  setCurrentResto({ name: element.restaurantName });
-                  e.stopPropagation();
-                  this.hideAndSick(idx);
-                  this.activateImportComment(
-                    element,
-                    google,
-                    map,
-                    addComment,
-                    currentResto
-                  );
-                  e.preventDefault();
-                }}>
-                <RestoCards
-                  name={element.restaurantName}
-                  address={element.address}
-                  rateAverage={
-                    !element.rateAverage
-                      ? this.calculateRateAverage(element.ratings)
-                      : element.rateAverage
-                  }
-                  showDetails={idx === this.state.idxShow}>
-                  <div className='comment-section'>
-                    {this.state.idxShow !== -1 && (
-                      <ImgRestaurant
-                        lat={element.lat}
-                        lng={element.long}
-                        ApiKey={apiKey}
-                        alt={element.restaurantName}
-                      />
-                    )}
-                    {element.ratings.map(e => (
-                      <CommentItem
-                        key={`${e.comment} - ${element.ratings.length}`}
-                        rate={e.stars}
-                        comment={e.comment}
-                      />
-                    ))}
-                  </div>
-                </RestoCards>
-              </div>
-            ))}
-          </div>
+            <div className="Restos">
+              {restoList.map((element, idx) => (
+                <div
+                  className='entireRestoCard'
+                  key={`${element.lat} - ${element.lng} - ${element.id}`}
+                  onClick={e => {
+                    setCurrentResto({ name: element.restaurantName });
+                    e.stopPropagation();
+                    this.hideAndSick(idx);
+                    this.activateImportComment(
+                      element,
+                      google,
+                      map,
+                      addComment,
+                      currentResto
+                    );
+                    e.preventDefault();
+                  }}>
+                  <RestoCards
+                    name={element.restaurantName}
+                    address={element.address}
+                    rateAverage={
+                      !element.rateAverage
+                        ? this.calculateRateAverage(element.ratings)
+                        : element.rateAverage
+                    }
+                    showDetails={idx === this.state.idxShow}>
+                    <div className='comment-section'>
+                      {this.state.idxShow !== -1 && (
+                        <ImgRestaurant
+                          lat={element.lat}
+                          lng={element.long}
+                          ApiKey={apiKey}
+                          alt={element.restaurantName}
+                        />
+                      )}
+                      {element.ratings.map(e => (
+                        <CommentItem
+                          key={`${e.comment} - ${element.ratings.length}`}
+                          rate={e.stars}
+                          comment={e.comment}
+                        />
+                      ))}
+                    </div>
+                  </RestoCards>
+                </div>
+              ))}
+            </div>
+          
         )}
       </Context.Consumer>
     );

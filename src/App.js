@@ -121,7 +121,9 @@ class App extends React.Component {
                 map={map}
                 addComment={addComment}
                 setCurrentResto={setCurrentResto}
-              />
+              >
+              </RestoList>
+              
             )}
           </Context.Consumer>
           <Context.Consumer>

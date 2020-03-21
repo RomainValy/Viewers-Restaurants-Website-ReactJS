@@ -35,6 +35,8 @@ class Modal extends React.Component {
                     e.preventDefault();
                     e.stopPropagation();
                 }}
+                className ="btn btn-outline-secondary"
+                style = {{marginTop: "5%", marginBottom : "5%"}}
                     >{this.props.buttonText}</button>
                 
                 <aside id={this.props.modalName} 
@@ -46,12 +48,14 @@ class Modal extends React.Component {
                     
                     <div className ="modalWrapper">
                         {this.props.children}
-                        <button onClick = {(e) => {
+                        <button 
+                        className ="btn btn-danger close"
+                        onClick = {(e) => {
                                 this.closeModal()
                                 e.preventDefault();
                                 e.stopPropagation();   
                             }}
-                                >Fermer</button>
+                                >X</button>
                     </div>
 
                     

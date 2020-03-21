@@ -1,0 +1,29 @@
+.addCommentForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+    height: 90%;
+}
+
+.formStyleComment{
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
+}
+
+.submitFormButton{
+    margin-top: 10%;
+    border-radius: 50%;
+    font-size: large;
+}
+
+.close{
+    align-self: flex-start;
+    height: 30px;
+    width: 30px;
+}

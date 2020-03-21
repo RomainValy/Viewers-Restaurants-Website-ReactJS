@@ -2,6 +2,7 @@ import React from 'react'
 import StarRatingComponent from 'react-star-rating-component';
 import EmptyStar from '../assets/star-empty.png'
 import FullStar from'../assets/star-full.png'
+import './addNewCommentForm.css'
 
 class AddNewCommentForm extends React.Component  {
     constructor(props){
@@ -41,8 +42,9 @@ class AddNewCommentForm extends React.Component  {
     render(){
         
         return (
-            <>
-                <div>
+            <div className= "addCommentForm" >
+             
+           
                             <h3>Notez votre expérience: </h3>
                                 <StarRatingComponent 
                                
@@ -52,20 +54,18 @@ class AddNewCommentForm extends React.Component  {
                                 value={this.state.stars}
                                 onStarClick={this.onStarClick.bind(this)}
                                 />
-                </div>
+                
             
-               <form>
-                    <h1>Votre expérience</h1>
-                        
-                        <div>
+                <form>
+                        <div className="form-group formStyleComment">
                             <label htmlFor="comment">Dites nous en plus</label>
-                            <textarea defaultValue= {this.state.comment} id="comment" onChange={this.handleChange}/>
-                            <button onClick = {this.handleSubmit}
-                                >Je dépose mon avis</button>
+                            <textarea className="form-control" defaultValue= {this.state.comment} id="comment" onChange={this.handleChange}/>
+                            <button className="btn btn-primary submitFormButton" onClick = {this.handleSubmit}
+                                >+</button>
                         </div>
                         
                 </form> 
-             </>
+             </div>
             
         )
     }

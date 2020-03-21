@@ -9,9 +9,7 @@ import Bubble from "../assets/bubble2.png";
 import "./marker.css";
 
 export class MapContainer extends Component {
-  
   constructor(props) {
-    
     super(props);
     this.restoList = props.restoList;
     this.userPos = props.userPos;
@@ -26,21 +24,19 @@ export class MapContainer extends Component {
         lat: null,
         lng: null
       },
-      
+
       showModal: false
     };
-    
+
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   handleOpenModal = () => {
-    
     this.setState({ showModal: true });
   };
 
   handleCloseModal = () => {
-    
     this.setState({ showModal: false });
   };
 
@@ -65,7 +61,7 @@ export class MapContainer extends Component {
           long: e.geometry.location.lng(),
           restaurantName: e.name,
           address: e.vicinity,
-          rateAverage : e.rating,
+          rateAverage: e.rating,
           ratings: [],
           id: e.place_id
         });
@@ -80,7 +76,6 @@ export class MapContainer extends Component {
   };
 
   onMapReady = (mapProps, map) => {
-
     const { google } = mapProps;
     const service = new google.maps.places.PlacesService(map);
     this.props.setMap(map);
@@ -130,7 +125,6 @@ export class MapContainer extends Component {
   };
 
   onMapClicked = (e, mapProps, map) => {
-    
     this.closeInfoWindow();
 
     this.setState({
@@ -148,11 +142,32 @@ export class MapContainer extends Component {
       width: "100%",
       height: "90vh"
     };
+
+    const customStyles = {
+      content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        width: "30%",
+        height: "50%",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)"
+      }
+    };
     return (
       <Context.Consumer>
-        {({ restoList, userPos, addResto, defaultCenter, setRestoList, map, google, fiterValue }) => (
+        {({
+          restoList,
+          userPos,
+          addResto,
+          defaultCenter,
+          setRestoList,
+          map,
+          google,
+          fiterValue
+        }) => (
           <>
-          
             <Map
               containerStyle={containerStyle}
               google={this.props.google}
@@ -167,7 +182,7 @@ export class MapContainer extends Component {
                   onClick={this.onMarkerClick}
                   name={"Vous êtes ici"}
                   position={isNaN(userPos.lat) ? defaultCenter : userPos}
-                  className = "user"
+                  className='user'
                   icon={{
                     url: Bubble,
                     anchor: new google.maps.Point(32, 32),
@@ -177,17 +192,18 @@ export class MapContainer extends Component {
                 />
               )}
 
-              {restoList.map(e =>
-                ((e.lat || e.lng !== undefined) && 
-                (fiterValue.min <= Math.round(e.rateAverage) &&
-                fiterValue.max >= e.rateAverage)) &&
-                  <Marker
-                    onClick={this.onMarkerClick}
-                    key={`${e.lat} - ${e.long} - ${e.id}`}
-                    position={{ lat: e.lat, lng: e.long }}
-                    animation = {google.maps.Animation.DROP}
-                    name={`${e.restaurantName}`}
-                  />
+              {restoList.map(
+                e =>
+                  (e.lat || e.lng !== undefined) &&
+                  fiterValue.min <= Math.round(e.rateAverage) &&
+                    fiterValue.max >= e.rateAverage && (
+                    <Marker
+                      onClick={this.onMarkerClick}
+                      key={`${e.lat} - ${e.long} - ${e.id}`}
+                      position={{ lat: e.lat, lng: e.long }}
+                      name={`${e.restaurantName}`}
+                    />
+                  )
               )}
 
               <InfoWindow
@@ -202,9 +218,11 @@ export class MapContainer extends Component {
 
             <ReactModal
               isOpen={this.state.showModal}
+              style={customStyles}
+              onRequestClose={this.handleCloseModal}
               appElement={document.getElementById("root")}>
               <NewRestoForm
-                google = {this.props.google}
+                google={this.props.google}
                 addResto={addResto}
                 closeModal={this.handleCloseModal}
                 lng={this.state.newRestoCoordinate.lng}
@@ -214,16 +232,12 @@ export class MapContainer extends Component {
             </ReactModal>
           </>
         )}
-       
       </Context.Consumer>
-  
     );
   }
 }
-
 
 export default GoogleApiWrapper(props => ({
   apiKey: props.apiKey,
   language: props.language
 }))(MapContainer);
-

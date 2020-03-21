@@ -1,5 +1,6 @@
 import React from 'react'
 import Context from '../RestaurantsContext'
+import './NewRestoForm.css'
 
 class NewRestoForm extends React.Component  {
     
@@ -80,23 +81,24 @@ class NewRestoForm extends React.Component  {
     render(){
         return ( <Context.Consumer>
             {({ restoList, addResto}) => (
-            <>
+            <div className= "newRestoForm">
                     <form>
+                        
                         <h1>Votre établissement</h1>
+                            <br/>
+                        <div className="form-group formStyle">
+                                <label htmlFor= "restaurantName"> Nom de l'établissement </label>
+                                    <input type="text" className ="form-control" aria-describedby="inputGroup-sizing-lg" id="restaurantName" defaultValue={this.state.restaurantName} onChange ={this.handleChange} required/>
                             
-                        <div>
-                            <label htmlFor= "restaurantName"> Nom de l'établissement </label>
-                                <input type="text" id="restaurantName" defaultValue={this.state.restaurantName} onChange ={this.handleChange} required/>
-                        </div>
-                        <div>
-                            <button onClick = {this.handleSubmit}> Ajouter mon restaurant </button>
-                        </div>                           
+                            <div >
+                                <button className= "btn btn-primary submitForm" onClick = {this.handleSubmit}> + </button>
+                            </div>
                                 
-                          
-                    
+                                   
+                        </div>
                     </form> 
-                    <button onClick = {this.closeModal}> Fermer </button>
-            </>
+                    <button className="btn btn-danger close" onClick = {this.closeModal}>X</button>
+            </div>
            )}
        
            </Context.Consumer>   

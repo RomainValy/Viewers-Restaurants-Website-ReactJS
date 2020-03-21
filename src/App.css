@@ -3,8 +3,9 @@
   grid-area: Header;
  align-self: center;
  text-align: center;
+ background-color: azure;
  };
- 
+
 .Restos {
   grid-area: Restos;
   height: 100vh;
