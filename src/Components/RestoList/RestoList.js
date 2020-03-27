@@ -52,7 +52,7 @@ class RestoList extends React.Component {
         results.reviews
       );
       //stock les données necessaires dans un objet qui correspond au state global
-      results.reviews.forEach(e => {
+      (results.reviews || []).forEach(e => {
         this.addComment({
           stars: e.rating,
           comment: e.text
