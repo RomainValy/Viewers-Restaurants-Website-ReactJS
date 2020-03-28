@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.10bed5eb.chunk.css",
-    "main.js": "/static/js/main.8eb54a08.chunk.js",
-    "main.js.map": "/static/js/main.8eb54a08.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.3247507d.js",
-    "runtime-main.js.map": "/static/js/runtime-main.3247507d.js.map",
-    "static/js/2.832881ce.chunk.js": "/static/js/2.832881ce.chunk.js",
-    "static/js/2.832881ce.chunk.js.map": "/static/js/2.832881ce.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.9f33cb9e9ed2c98176e1bb8e538d68ff.js": "/precache-manifest.9f33cb9e9ed2c98176e1bb8e538d68ff.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.10bed5eb.chunk.css.map": "/static/css/main.10bed5eb.chunk.css.map",
-    "static/js/2.832881ce.chunk.js.LICENSE.txt": "/static/js/2.832881ce.chunk.js.LICENSE.txt"
+    "main.css": "/Viewers-Restaurants-Website-ReactJS/static/css/main.10bed5eb.chunk.css",
+    "main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/main.94d4918a.chunk.js",
+    "main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/main.94d4918a.chunk.js.map",
+    "runtime-main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js",
+    "runtime-main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js.map",
+    "static/js/2.832881ce.chunk.js": "/Viewers-Restaurants-Website-ReactJS/static/js/2.832881ce.chunk.js",
+    "static/js/2.832881ce.chunk.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/2.832881ce.chunk.js.map",
+    "index.html": "/Viewers-Restaurants-Website-ReactJS/index.html",
+    "precache-manifest.2bcd4c670f711c9b81f92500d62361da.js": "/Viewers-Restaurants-Website-ReactJS/precache-manifest.2bcd4c670f711c9b81f92500d62361da.js",
+    "service-worker.js": "/Viewers-Restaurants-Website-ReactJS/service-worker.js",
+    "static/css/main.10bed5eb.chunk.css.map": "/Viewers-Restaurants-Website-ReactJS/static/css/main.10bed5eb.chunk.css.map",
+    "static/js/2.832881ce.chunk.js.LICENSE.txt": "/Viewers-Restaurants-Website-ReactJS/static/js/2.832881ce.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.3247507d.js",
+    "static/js/runtime-main.a70b26e4.js",
     "static/js/2.832881ce.chunk.js",
     "static/css/main.10bed5eb.chunk.css",
-    "static/js/main.8eb54a08.chunk.js"
+    "static/js/main.94d4918a.chunk.js"
   ]
 }
