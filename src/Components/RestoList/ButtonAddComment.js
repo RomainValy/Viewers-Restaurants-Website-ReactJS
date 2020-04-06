@@ -5,7 +5,10 @@ import Context from '../RestaurantsContext'
 import AddNewCommentForm from './addNewCommentForm'
 import Modal from '.././Modal'
 class ButtonAddComment extends React.Component{
-
+    constructor( props){
+        super(props)
+        this.restaurantName = props.restaurantName
+    }
     
     render(){
         return <>
@@ -17,7 +20,9 @@ class ButtonAddComment extends React.Component{
                                 buttonText = {"ajoutez votre commentaire"}
                             >
                                 
-                                    <AddNewCommentForm addComment = {addComment}
+                                    <AddNewCommentForm 
+                                        restaurantName = {this.props.restaurantName}
+                                        addComment = {addComment}
                                     />
                             </Modal>
                                 

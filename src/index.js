@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App apiKey = "AIzaSyCsy-AdAPt8Tu8x9tMyq5Z-XGPbNQuFpag"
+ReactDOM.render(<App apiKey = "AIzaSyC_ZvcZ_AHoJzdFNumVjpC_mB1jy-hEEho"
                     language= "fr"
     />, document.getElementById('root'));
 

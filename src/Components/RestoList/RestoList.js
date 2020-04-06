@@ -47,10 +47,6 @@ class RestoList extends React.Component {
 
   onimportCommentOnClick = (results, status, google) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-      console.log(
-        "RestoList -> onimportCommentOnClick -> results.reviews",
-        results.reviews
-      );
       //stock les données necessaires dans un objet qui correspond au state global
       (results.reviews || []).forEach(e => {
         this.addComment({
@@ -70,8 +66,7 @@ class RestoList extends React.Component {
       placeId: e.id,
       fields: ["reviews.rating", "reviews.text"]
     };
-    console.log("RestoList -> importCommentOnClick -> request", request);
-
+    
     // requete et appel de la fonction call back
     service.getDetails(request, (results, status) =>
       this.onimportCommentOnClick.call(this, results, status, google)

@@ -22,10 +22,10 @@ export class MapContainer extends Component {
       allReadyLoaded: false,
       newRestoCoordinate: {
         lat: null,
-        lng: null
+        lng: null,
       },
 
-      showModal: false
+      showModal: false,
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -49,13 +49,11 @@ export class MapContainer extends Component {
   };
 
   onNearBySearch = (results, status, google) => {
-    console.log("TCL: MapContainer -> onNearBySearch -> onNearBySearch");
     let finalResults = [];
 
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       //stock les données necessaires dans un objet qui correspond au state global
-      console.log("results requete google place", results);
-      results.forEach(e => {
+      results.forEach((e) => {
         finalResults.push({
           lat: e.geometry.location.lat(),
           long: e.geometry.location.lng(),
@@ -63,7 +61,7 @@ export class MapContainer extends Component {
           address: e.vicinity,
           rateAverage: e.rating,
           ratings: [],
-          id: e.place_id
+          id: e.place_id,
         });
       });
 
@@ -72,31 +70,26 @@ export class MapContainer extends Component {
       this.setRestoList(finalResults);
     } else {
       console.log("erreur du reseau :" + status);
+      
     }
   };
 
   onMapReady = (mapProps, map) => {
-    const { google } = mapProps;
+    const {google} = mapProps;
     const service = new google.maps.places.PlacesService(map);
     this.props.setMap(map);
-    console.log("MapContainer -> onMapReady -> map", map);
     const request = {
       location: mapProps.center,
-      radius: "1500",
+      radius: "3000",
       type: ["restaurant"],
       keyword: ["restaurant"],
-      fields: ["name", "geometry.location", "vicinty", "reviews"]
+      fields: ["name", "geometry.location", "vicinty", "reviews"],
     };
-    console.log(
-      "MapContainer -> onMapReady -> mapProps.center",
-      mapProps.center
-    );
 
     // requete et appel de la fonction call back
     service.nearbySearch(request, (results, status) =>
       this.onNearBySearch.call(this, results, status, google)
     );
-
     // initalise la fonction callback qui va traité la reponse de l'API
   };
 
@@ -106,20 +99,16 @@ export class MapContainer extends Component {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
-    });
+      showingInfoWindow: true,
+    });    
   };
-
-  onMouseoverMarker(props, marker, e) {
-    // ..
-  }
   // -------- Ajout d'un restaurant avec levent onClick sur la page
 
   closeInfoWindow = () => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null
+        activeMarker: null,
       });
     }
   };
@@ -130,8 +119,8 @@ export class MapContainer extends Component {
     this.setState({
       newRestoCoordinate: {
         lat: map.latLng.lat(),
-        lng: map.latLng.lng()
-      }
+        lng: map.latLng.lng(),
+      },
     });
     this.handleOpenModal();
   };
@@ -140,7 +129,7 @@ export class MapContainer extends Component {
     const containerStyle = {
       position: "relative",
       width: "100%",
-      height: "90vh"
+      height: "90vh",
     };
 
     const customStyles = {
@@ -152,8 +141,8 @@ export class MapContainer extends Component {
         width: "30%",
         height: "50%",
         marginRight: "-50%",
-        transform: "translate(-50%, -50%)"
-      }
+        transform: "translate(-50%, -50%)",
+      },
     };
     return (
       <Context.Consumer>
@@ -165,7 +154,7 @@ export class MapContainer extends Component {
           setRestoList,
           map,
           google,
-          fiterValue
+          filterValue,
         }) => (
           <>
             <Map
@@ -186,17 +175,17 @@ export class MapContainer extends Component {
                   icon={{
                     url: Bubble,
                     anchor: new google.maps.Point(32, 32),
-                    scaledSize: new google.maps.Size(64, 64)
+                    scaledSize: new google.maps.Size(64, 64),
                   }}
                   label={"You"}
                 />
               )}
 
               {restoList.map(
-                e =>
+                (e) =>
                   (e.lat || e.lng !== undefined) &&
-                  fiterValue.min <= Math.round(e.rateAverage) &&
-                    fiterValue.max >= e.rateAverage && (
+                  filterValue.min <= Math.round(e.rateAverage) &&
+                  filterValue.max >= e.rateAverage && (
                     <Marker
                       onClick={this.onMarkerClick}
                       key={`${e.lat} - ${e.long} - ${e.id}`}
@@ -210,13 +199,16 @@ export class MapContainer extends Component {
                 onClose={this.onInfoWindowClose}
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}>
-                <div>
-                  <p>{this.state.selectedPlace.name}</p>
-                </div>
+                  <div>                    
+                    <p>{this.state.selectedPlace.name}</p>
+                  </div>
+                 
+                
               </InfoWindow>
             </Map>
 
             <ReactModal
+              key = {this.index}
               isOpen={this.state.showModal}
               style={customStyles}
               onRequestClose={this.handleCloseModal}
@@ -237,7 +229,7 @@ export class MapContainer extends Component {
   }
 }
 
-export default GoogleApiWrapper(props => ({
+export default GoogleApiWrapper((props) => ({
   apiKey: props.apiKey,
-  language: props.language
+  language: props.language,
 }))(MapContainer);

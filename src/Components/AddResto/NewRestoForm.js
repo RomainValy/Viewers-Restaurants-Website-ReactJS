@@ -27,15 +27,13 @@ class NewRestoForm extends React.Component  {
 
 
     componentDidMount(){
-        console.log(this.props.lat, this.props.lng,)
         this.importAdressFromLatLng()
     }
 
-    onimportAdressFromLatLng = (results, status, google) => {
+    onimportAdressFromLatLng(results, status, google){
     
         
         if (status === 'OK') {
-            console.log("NewRestoForm -> onimportAdressFromLatLng -> results", results)
             this.setState({address : results[0].formatted_address,
                            id : results[0].place_id
                         })
@@ -46,12 +44,11 @@ class NewRestoForm extends React.Component  {
         }
       };
     
-      importAdressFromLatLng = (google, latLng) => {
+      importAdressFromLatLng(google, latLng){
         google = this.props.google;
         const service = new google.maps.Geocoder();;
         latLng = {lat: this.props.lat, lng: this.props.lng}
         const request = {'location' : latLng}
-        console.log("RestoList -> importCommentOnClick -> request", request);
     
         // requete et appel de la fonction call back
         service.geocode(request, (results, status) =>
@@ -70,9 +67,7 @@ class NewRestoForm extends React.Component  {
         e.preventDefault();
         let result = {}
         result = this.state
-        this.addResto(result)
-        console.log("restoList", this.props.restoList)
-        
+        this.addResto(result)        
         this.closeModal();
         
     }

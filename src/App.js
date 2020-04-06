@@ -1,5 +1,3 @@
-/** @format */
-
 import React from "react";
 import restaurants from "../src/Data/restaurants.json";
 import "./App.css";
@@ -10,49 +8,69 @@ import MapContainer from "./Components/Map2/MapContainer";
 import Filter from "./Components/Filter";
 import { GoogleApiWrapper } from "google-maps-react";
 
+/**
+ * @description liste de restaurants par défaut issue de data/restaurants.json
+ */
 const initRestoList = restaurants;
 
+/**
+ * @description classe de plus haut niveau
+ * @extends React.Component 
+ */
 class App extends React.Component {
+  /**
+   * 
+   * @param {object} props React.Components.props
+   * @description this.state
+   * @param {object} restoList liste des restaurant à affichés
+   * @param {object} currentResto restaurant actuellement cible des écouteurs d'evenement 'click'
+   * @param {string} apiKey clé API google
+   * @param {object} userPos position actuelle de l'utilisateur grace à App.getUserPosition() (valeur par défaut : lat: 48.8534, lng: 2.3488)
+   * @param {object} filterValue valeur enter lesquels seuls les restaurants correspondant doivent s'affichées générée part Components\RestoList\RestoList.js
+   * @param {object} google export de l'objet Google depuis "./Components/Map2/MapContainer"
+   * @param {object} map ajout de l'objet map instancié par "./Components/Map2/MapContainer"
+   * @param {Function} getUserPosition methode permettant d'initaliser et de modifier userPos
+   * 
+   */
   constructor(props) {
     super(props);
-
     this.state = {
       restoList: initRestoList,
       currentResto: null,
-      apiKey: "AIzaSyCsy-AdAPt8Tu8x9tMyq5Z-XGPbNQuFpag",
+      apiKey: "AIzaSyC_ZvcZ_AHoJzdFNumVjpC_mB1jy-hEEho",
       userPos: { lat: 48.8534, lng: 2.3488 },
       defaultCenter: {
         lat: 48.8534,
-        lng: 2.3488
+        lng: 2.3488,
       },
       filterValue: {
         min: 0,
-        max: 5
+        max: 5,
       },
       google: props.google,
-      map: null
+      map: null,
     };
     this.getUserPosition();
   }
 
   static defaultProps = {
-    defaultRestoList: initRestoList
+    defaultRestoList: initRestoList,
   };
 
-  setMap = map => {
+  setMap = (map) => {
     this.setState({ map });
   };
 
-  setFilterValue = value => {
+  setFilterValue = (value) => {
     this.setState({ filterValue: value });
   };
 
   getUserPosition = () => {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       if (position) {
         let result = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
         this.setState({ userPos: result });
       } else {
@@ -61,18 +79,17 @@ class App extends React.Component {
     });
   };
 
-  addResto = resto => {
-    let result = this.state.restoList
-    result.push(resto)
+  addResto = (resto) => {
+    let result = this.state.restoList;
+    result.push(resto);
     this.setState({ restoList: result });
-    //this.setState({restoList: [...this.state.restoList, resto]})
   };
 
-  setRestoList = newList => {
+  setRestoList = (newList) => {
     this.setState({ restoList: newList });
-    console.log("App -> newList", newList);
+    
   };
-  addComment = comment => {
+  addComment = (comment) => {
     const result = this.state.restoList;
 
     const currentRestoComment = result.find(({ restaurantName }) => {
@@ -81,7 +98,7 @@ class App extends React.Component {
     // si le commentaire n'existe pas déjà, on l'ajoute à la liste
     if (
       currentRestoComment.ratings.every(
-        elem => elem.comment !== comment.comment
+        (elem) => elem.comment !== comment.comment
       ) === true
     ) {
       currentRestoComment.ratings.push(comment);
@@ -98,7 +115,7 @@ class App extends React.Component {
           value={{
             map: this.state.map,
             google: this.state.google,
-            fiterValue: this.state.filterValue,
+            filterValue: this.state.filterValue,
             defaultCenter: this.state.defaultCenter,
             userPos: this.state.userPos,
             restoList: this.state.restoList,
@@ -107,9 +124,9 @@ class App extends React.Component {
             apiKey: this.state.apiKey,
             setMap: this.setMap,
             getUserPosition: this.getUserPosition,
-            setCurrentResto: currentResto => this.setState({ currentResto }),
+            setCurrentResto: (currentResto) => this.setState({ currentResto }),
             addComment: this.addComment,
-            setRestoList: this.setRestoList
+            setRestoList: this.setRestoList,
           }}>
           <Header>
             <Filter setFilterValue={this.setFilterValue} />
@@ -120,10 +137,7 @@ class App extends React.Component {
                 google={google}
                 map={map}
                 addComment={addComment}
-                setCurrentResto={setCurrentResto}
-              >
-              </RestoList>
-              
+                setCurrentResto={setCurrentResto}></RestoList>
             )}
           </Context.Consumer>
           <Context.Consumer>
@@ -131,9 +145,8 @@ class App extends React.Component {
               restoList,
               userPos,
               addResto,
-              defaultCenter,
               setRestoList,
-              setMap
+              setMap,              
             }) => (
               <MapContainer
                 setMap={setMap}
@@ -151,7 +164,7 @@ class App extends React.Component {
   }
 }
 
-export default GoogleApiWrapper(props => ({
+export default GoogleApiWrapper((props) => ({
   apiKey: props.apiKey,
-  language: props.language
+  language: props.language,
 }))(App);

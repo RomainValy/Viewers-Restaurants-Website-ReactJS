@@ -20,15 +20,15 @@ class ImgRestaurant extends Component {
         axios.get(request)
         
         .then((response) => {
-                console.log("TCL: ImgRestaurant -> componentDidMount -> response", response.status)
+            
                 this.setState({
                     imgSrc : request,
                     key: JSON.stringify(request)
                 })
             })
             .catch((error) => {
-                console.log("TCL: ImgRestaurant -> componentDidMount -> error", error)
-                console.log(error.response.data.error) 
+                ("TCL: ImgRestaurant -> componentDidMount -> error", error)
+                (error.response.data.error) 
                 
             })
             .then(() => {

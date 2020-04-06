@@ -8,6 +8,7 @@ class AddNewCommentForm extends React.Component  {
     constructor(props){
         super(props)
         this.addComment = props.addComment
+        this.restaurantName = props.restaurantName
         this.state = {
             stars : 1,
             comment: ''    
@@ -15,15 +16,12 @@ class AddNewCommentForm extends React.Component  {
         this.handleChange = this.handleChange.bind(this)
     }
     
-    onStarClick(nextValue, prevValue, name) {
-        this.setState({stars: nextValue});
-        console.log(this.state.stars)
-      }
+    onStarClick = nextValue => this.setState({stars: nextValue})
     
     handleChangeStar = (index, value) => {
-    return (
-        <img style={{width : 30, height: 30}} src ={index > value ? EmptyStar : FullStar} alt="#"></img>  
-        )
+        return (
+            <img style={{width : 30, height: 30}} src ={index > value ? EmptyStar : FullStar} alt="/#"></img>  
+            )
     }
 
     handleChange = e => {
@@ -58,8 +56,8 @@ class AddNewCommentForm extends React.Component  {
             
                 <form>
                         <div className="form-group formStyleComment">
-                            <label htmlFor="comment">Dites nous en plus</label>
-                            <textarea className="form-control" defaultValue= {this.state.comment} id="comment" onChange={this.handleChange}/>
+                            <label htmlFor={this.props.restaurantName + '-comment'}>Dites nous en plus</label>
+                            <textarea className="form-control" defaultValue= {this.state.comment} id= {this.props.restaurantName + '-comment'} onChange={this.handleChange}/>
                             <button className="btn btn-primary submitFormButton" onClick = {this.handleSubmit}
                                 >+</button>
                         </div>

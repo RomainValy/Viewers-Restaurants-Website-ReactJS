@@ -19,10 +19,8 @@ class Filter extends Component {
   optionMax = (min, max) => {
     let result = [];
     for (let i = min; i <= max; i++) {
-      console.log("Filter -> OptionMax -> i", i);
       result.push(Number(i));
     }
-    console.log("Filter -> OptionMax -> result", result);
     return result;
   };
 
@@ -43,8 +41,6 @@ class Filter extends Component {
 
   handleSubmit = e => {
     this.setFilterValue(this.state.value);
-    console.log("Filter -> this.state.value", this.state.value);
-
     e.preventDefault();
   };
 

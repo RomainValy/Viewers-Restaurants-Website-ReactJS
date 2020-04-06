@@ -17,13 +17,13 @@ class RestoCards extends React.Component {
   render() {
     return (
       <Context.Consumer>
-        {({ fiterValue }) =>
-          fiterValue.min <= Math.round(this.props.rateAverage) &&
-          fiterValue.max >= this.props.rateAverage && (
+        {({ filterValue }) =>
+          filterValue.min <= Math.round(this.props.rateAverage) &&
+          filterValue.max >= this.props.rateAverage && (
             <div className='restoCard'>
               <h5>{`${this.props.name}`}</h5>
               <p>{`${this.props.address}`}</p>
-              <StarsRate fixed={true} value={this.props.rateAverage} />
+                <StarsRate fixed={true} value={this.props.rateAverage} />
               {this.props.showDetails && this.props.children}
               <Context.Consumer>
                 {({ addComment, setCurrentResto }) => (
@@ -32,6 +32,7 @@ class RestoCards extends React.Component {
                     onClick={() => {
                       setCurrentResto({ name: this.props.name });
                     }}
+                    restaurantName = {this.props.name}
                   />
                 )}
               </Context.Consumer>
