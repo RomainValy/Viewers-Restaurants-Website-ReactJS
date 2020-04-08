@@ -23,8 +23,11 @@ class RestoCards extends React.Component {
             <div className='restoCard'>
               <h5>{`${this.props.name}`}</h5>
               <p>{`${this.props.address}`}</p>
-                <StarsRate fixed={true} value={this.props.rateAverage} />
+              
+              <StarsRate fixed={true} value={this.props.rateAverage} />
+              
               {this.props.showDetails && this.props.children}
+              
               <Context.Consumer>
                 {({ addComment, setCurrentResto }) => (
                   <ButtonAddComment
@@ -32,7 +35,7 @@ class RestoCards extends React.Component {
                     onClick={() => {
                       setCurrentResto({ name: this.props.name });
                     }}
-                    restaurantName = {this.props.name}
+                    restaurantName={this.props.name}
                   />
                 )}
               </Context.Consumer>

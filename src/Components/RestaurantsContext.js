@@ -1,7 +1,9 @@
 import React from 'react'
 /**
- * @namespace
- * @type {object}
+ * @namespace Context
+ * @extend React.createContext
+ * @type {object} 
+ * @constructor
  * @property {array} restoList contient la liste des restaurants et leurs données actuelles
  * @property {object} currentResto restaurant actuellement cible des écouteurs d'evenement 'click'
  * @property {string} apiKey
@@ -11,12 +13,12 @@ import React from 'react'
  * @property {object} google Google global object
  * @property {object} map retourne l'objet map instancié par Components/Map2/MapContainer.js
  * @property {method} setMap initialise l'objet map
- * @property {method} setFilterValue
- * @property {method} getUserPosition
- * @property {method} addResto
- * @property {method} setRestoList
- * @property {method} setCurrentResto
- * @property {method} addComment
+ * @property {method} setFilterValue modifie la valeure de filterValue
+ * @property {method} getUserPosition 
+ * @property {method} addResto 
+ * @property {method} setRestoList refond la liste des restaurant
+ * @property {method} setCurrentResto selectionne le bon objet en fonction de son nom
+ * @property {method} addComment ajoute un commentaire
  * 
  */
 const Context = React.createContext({

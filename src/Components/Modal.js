@@ -50,7 +50,7 @@ class Modal extends React.Component {
                         {this.props.children}
                         <button 
                         className ="btn btn-danger close"
-                        onClick = {(e) => {
+                        onClick = {e => {
                                 this.closeModal()
                                 e.preventDefault();
                                 e.stopPropagation();   

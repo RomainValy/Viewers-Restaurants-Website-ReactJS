@@ -9,10 +9,10 @@ class Filter extends Component {
     this.state = {
       value: {
         min: 0,
-        max: 5
+        max: 5,
       },
       maxOption: [0, 1, 2, 3, 4, 5],
-      minOption: [0, 1, 2, 3, 4, 5]
+      minOption: [0, 1, 2, 3, 4, 5],
     };
   }
 
@@ -26,14 +26,14 @@ class Filter extends Component {
 
   handleChangeMin = e => {
     this.setState({
-      value: { min: Number(e.target.value), max: this.state.value.max }
+      value: { min: Number(e.target.value), max: this.state.value.max },
     });
     const minOpt = this.optionMax(e.target.value, 5);
     this.setState({ maxOption: minOpt });
   };
   handleChangeMax = e => {
     this.setState({
-      value: { min: this.state.value.min, max: Number(e.target.value) }
+      value: { min: this.state.value.min, max: Number(e.target.value) },
     });
     const maxOpt = this.optionMax(0, e.target.value);
     this.setState({ minOption: maxOpt });
@@ -46,41 +46,47 @@ class Filter extends Component {
 
   render() {
     return (
-      <form style={{width: "max-content", marginLeft:  "120px"}}>
+      <form style={{ width: "max-content", marginLeft: "120px" }}>
         <div className='form-row align-items-center'>
-        <p className='col-auto my-1'>Filtrer par note</p>
+          <p className='col-auto my-1'>Filtrer par note</p>
           <div className='col-auto my-1'>
-            <label className='mr-sm-2 sr-only' htmlFor="min">De</label>
+            <label className='mr-sm-2 sr-only' htmlFor='min'>
+              De
+            </label>
             <select
               className='custom-select mr-sm-2'
-              id="min"
+              id='min'
               value={this.state.value.min}
               onChange={this.handleChangeMin}>
-              {this.state.minOption.map(e => (
+              {this.state.minOption.map((e) => (
                 <option
                   key={e + "est la valeur min"}
                   value={e}>{`${e}`}</option>
               ))}
             </select>
-            </div>
-            <div className='col-auto my-1'>
-            <label className='mr-sm-2 sr-only' htmlFor="max">à</label>
+          </div>
+          <div className='col-auto my-1'>
+            <label className='mr-sm-2 sr-only' htmlFor='max'>
+              à
+            </label>
             <select
-            id="max"
+              id='max'
               className='custom-select mr-sm-2'
               value={this.state.value.max}
               onChange={this.handleChangeMax}>
-              {this.state.maxOption.map(e => (
+              {this.state.maxOption.map((e) => (
                 <option
                   key={e + "est la valeur max"}
                   value={e}>{`${e}`}</option>
               ))}
             </select>
-            </div>
-            <div className='col-auto my-1'>
-            <button className="btn btn-primary" onClick={this.handleSubmit}> Valider </button>
-            </div>
-          
+          </div>
+          <div className='col-auto my-1'>
+            <button className='btn btn-primary' onClick={this.handleSubmit}>
+              {" "}
+              Valider{" "}
+            </button>
+          </div>
         </div>
       </form>
     );

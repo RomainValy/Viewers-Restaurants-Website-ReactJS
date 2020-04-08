@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import restaurants from "../src/Data/restaurants.json";
 import "./App.css";
@@ -14,25 +16,25 @@ import { GoogleApiWrapper } from "google-maps-react";
 const initRestoList = restaurants;
 
 /**
- * @description classe de plus haut niveau
- * @extends React.Component 
+ * @description App component
+ * @extends React.Component
+ * 
+   * @param {object} props React.Components.props
+   * @param {object} state App.state
+   * @param {object} state.restoList liste des restaurant à affichés
+   * @param {object} state.currentResto restaurant actuellement cible des écouteurs d'evenement 'click'
+   * @param {string} state.apiKey clé API google
+   * @param {object} state.userPos position actuelle de l'utilisateur grace à App.getUserPosition() (valeur par défaut : lat: 48.8534, lng: 2.3488)
+   * @param {object} state.filterValue valeur enter lesquels seuls les restaurants correspondant doivent s'affichées générée part Components\RestoList\RestoList.js
+   * @param {object} state.google export de l'objet Google depuis "./Components/Map2/MapContainer"
+   * @param {object} state.map ajout de l'objet map instancié par "./Components/Map2/MapContainer"
+   * @param {Function} props.getUserPosition methode permettant d'initaliser et de modifier userPos
+   *
  */
 class App extends React.Component {
-  /**
-   * 
-   * @param {object} props React.Components.props
-   * @description this.state
-   * @param {object} restoList liste des restaurant à affichés
-   * @param {object} currentResto restaurant actuellement cible des écouteurs d'evenement 'click'
-   * @param {string} apiKey clé API google
-   * @param {object} userPos position actuelle de l'utilisateur grace à App.getUserPosition() (valeur par défaut : lat: 48.8534, lng: 2.3488)
-   * @param {object} filterValue valeur enter lesquels seuls les restaurants correspondant doivent s'affichées générée part Components\RestoList\RestoList.js
-   * @param {object} google export de l'objet Google depuis "./Components/Map2/MapContainer"
-   * @param {object} map ajout de l'objet map instancié par "./Components/Map2/MapContainer"
-   * @param {Function} getUserPosition methode permettant d'initaliser et de modifier userPos
-   * 
-   */
+   
   constructor(props) {
+   
     super(props);
     this.state = {
       restoList: initRestoList,
@@ -57,6 +59,7 @@ class App extends React.Component {
     defaultRestoList: initRestoList,
   };
 
+  
   setMap = (map) => {
     this.setState({ map });
   };
@@ -87,7 +90,6 @@ class App extends React.Component {
 
   setRestoList = (newList) => {
     this.setState({ restoList: newList });
-    
   };
   addComment = (comment) => {
     const result = this.state.restoList;
@@ -141,13 +143,7 @@ class App extends React.Component {
             )}
           </Context.Consumer>
           <Context.Consumer>
-            {({
-              restoList,
-              userPos,
-              addResto,
-              setRestoList,
-              setMap,              
-            }) => (
+            {({ restoList, userPos, addResto, setRestoList, setMap }) => (
               <MapContainer
                 setMap={setMap}
                 apiKey={this.state.apiKey}

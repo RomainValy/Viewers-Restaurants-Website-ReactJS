@@ -70,17 +70,16 @@ export class MapContainer extends Component {
       this.setRestoList(finalResults);
     } else {
       console.log("erreur du reseau :" + status);
-      
     }
   };
 
   onMapReady = (mapProps, map) => {
-    const {google} = mapProps;
+    const { google } = mapProps;
     const service = new google.maps.places.PlacesService(map);
     this.props.setMap(map);
     const request = {
       location: mapProps.center,
-      radius: "3000",
+      radius: "5000",
       type: ["restaurant"],
       keyword: ["restaurant"],
       fields: ["name", "geometry.location", "vicinty", "reviews"],
@@ -100,7 +99,7 @@ export class MapContainer extends Component {
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
-    });    
+    });
   };
   // -------- Ajout d'un restaurant avec levent onClick sur la page
 
@@ -160,7 +159,7 @@ export class MapContainer extends Component {
             <Map
               containerStyle={containerStyle}
               google={this.props.google}
-              zoom={14}
+              zoom={12}
               initialCenter={userPos}
               center={userPos}
               onClick={this.onMapClicked}
@@ -199,16 +198,14 @@ export class MapContainer extends Component {
                 onClose={this.onInfoWindowClose}
                 marker={this.state.activeMarker}
                 visible={this.state.showingInfoWindow}>
-                  <div>                    
-                    <p>{this.state.selectedPlace.name}</p>
-                  </div>
-                 
-                
+                <div>
+                  <p>{this.state.selectedPlace.name}</p>
+                </div>
               </InfoWindow>
             </Map>
 
             <ReactModal
-              key = {this.index}
+              key={this.index}
               isOpen={this.state.showModal}
               style={customStyles}
               onRequestClose={this.handleCloseModal}
