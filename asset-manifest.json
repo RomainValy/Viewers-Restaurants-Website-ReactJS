@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Viewers-Restaurants-Website-ReactJS/static/css/main.ef6c5ed0.chunk.css",
-    "main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/main.774fa018.chunk.js",
-    "main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/main.774fa018.chunk.js.map",
+    "main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/main.c5bc0b12.chunk.js",
+    "main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/main.c5bc0b12.chunk.js.map",
     "runtime-main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js",
     "runtime-main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js.map",
     "static/js/2.f41eca4e.chunk.js": "/Viewers-Restaurants-Website-ReactJS/static/js/2.f41eca4e.chunk.js",
     "static/js/2.f41eca4e.chunk.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/2.f41eca4e.chunk.js.map",
     "index.html": "/Viewers-Restaurants-Website-ReactJS/index.html",
-    "precache-manifest.487b99ae1cece7dbbc1f61ec3dd91774.js": "/Viewers-Restaurants-Website-ReactJS/precache-manifest.487b99ae1cece7dbbc1f61ec3dd91774.js",
+    "precache-manifest.7a8e65e79c9dbe4967ca11008b5c6cbb.js": "/Viewers-Restaurants-Website-ReactJS/precache-manifest.7a8e65e79c9dbe4967ca11008b5c6cbb.js",
     "service-worker.js": "/Viewers-Restaurants-Website-ReactJS/service-worker.js",
     "static/css/main.ef6c5ed0.chunk.css.map": "/Viewers-Restaurants-Website-ReactJS/static/css/main.ef6c5ed0.chunk.css.map",
     "static/js/2.f41eca4e.chunk.js.LICENSE.txt": "/Viewers-Restaurants-Website-ReactJS/static/js/2.f41eca4e.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a70b26e4.js",
     "static/js/2.f41eca4e.chunk.js",
     "static/css/main.ef6c5ed0.chunk.css",
-    "static/js/main.774fa018.chunk.js"
+    "static/js/main.c5bc0b12.chunk.js"
   ]
 }
