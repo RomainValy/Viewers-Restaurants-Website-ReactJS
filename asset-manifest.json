@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Viewers-Restaurants-Website-ReactJS/static/css/main.ef6c5ed0.chunk.css",
-    "main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/main.0ace61b6.chunk.js",
-    "main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/main.0ace61b6.chunk.js.map",
+    "main.css": "/Viewers-Restaurants-Website-ReactJS/static/css/main.59b0ba1a.chunk.css",
+    "main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/main.89f56852.chunk.js",
+    "main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/main.89f56852.chunk.js.map",
     "runtime-main.js": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js",
     "runtime-main.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/runtime-main.a70b26e4.js.map",
     "static/js/2.b774165c.chunk.js": "/Viewers-Restaurants-Website-ReactJS/static/js/2.b774165c.chunk.js",
     "static/js/2.b774165c.chunk.js.map": "/Viewers-Restaurants-Website-ReactJS/static/js/2.b774165c.chunk.js.map",
     "index.html": "/Viewers-Restaurants-Website-ReactJS/index.html",
-    "precache-manifest.195211aeb32a855f4c9a25f8fcc1ef60.js": "/Viewers-Restaurants-Website-ReactJS/precache-manifest.195211aeb32a855f4c9a25f8fcc1ef60.js",
+    "precache-manifest.fc3f73e937c6ec22d22a736f22b241d7.js": "/Viewers-Restaurants-Website-ReactJS/precache-manifest.fc3f73e937c6ec22d22a736f22b241d7.js",
     "service-worker.js": "/Viewers-Restaurants-Website-ReactJS/service-worker.js",
-    "static/css/main.ef6c5ed0.chunk.css.map": "/Viewers-Restaurants-Website-ReactJS/static/css/main.ef6c5ed0.chunk.css.map",
+    "static/css/main.59b0ba1a.chunk.css.map": "/Viewers-Restaurants-Website-ReactJS/static/css/main.59b0ba1a.chunk.css.map",
     "static/js/2.b774165c.chunk.js.LICENSE.txt": "/Viewers-Restaurants-Website-ReactJS/static/js/2.b774165c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a70b26e4.js",
     "static/js/2.b774165c.chunk.js",
-    "static/css/main.ef6c5ed0.chunk.css",
-    "static/js/main.0ace61b6.chunk.js"
+    "static/css/main.59b0ba1a.chunk.css",
+    "static/js/main.89f56852.chunk.js"
   ]
 }
