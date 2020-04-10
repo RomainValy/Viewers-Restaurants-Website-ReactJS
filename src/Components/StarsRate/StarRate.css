@@ -1,5 +1,8 @@
 .starsRate{
     display: flex;
     flex-direction: row;
-    
+    justify-content: baseline;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

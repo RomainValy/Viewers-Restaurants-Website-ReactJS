@@ -12,6 +12,7 @@
 .commentItem :first-child {
   justify-self: flex-start;
   width: auto;
+  
 }
 
 .commentItem :last-child {

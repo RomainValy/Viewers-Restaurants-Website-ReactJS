@@ -107,18 +107,8 @@ class App extends React.Component {
 
   /**
    * @method addResto ajoute un objet à restoList
-   * @param {object} resto
-   * @example resto = {
-   * restaurantName: string;
-   * address: string;
-   * lat: number;
-   * long: number;
-   * ratings: {
-   *      stars: number;
-   *      comment: string;
-   *    }[];
-   * }[]
-   * }
+   * @param {{restaurantName: string , address: string, lat: number, long: number , ratings: object, stars: number, comment: string}} resto
+   * 
    */
   addResto = (resto) => {
     let result = this.state.restoList;
