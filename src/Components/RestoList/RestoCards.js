@@ -19,7 +19,7 @@ class RestoCards extends React.Component {
       <Context.Consumer>
         {({ filterValue }) =>
           filterValue.min <= Math.round(this.props.rateAverage) &&
-          filterValue.max >= this.props.rateAverage && (
+          filterValue.max >= Math.round(this.props.rateAverage) && (
             <div className='restoCard'>
               <h5>{`${this.props.name}`}</h5>
               <p>{`${this.props.address}`}</p>

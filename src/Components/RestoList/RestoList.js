@@ -18,7 +18,7 @@ class RestoList extends React.Component {
       idxShow: -1,
       currentComments: [],
     };
-  }
+  };
 
   calculateRateAverage = (arr) => {
     let result = [];

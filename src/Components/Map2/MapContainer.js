@@ -184,7 +184,7 @@ export class MapContainer extends Component {
                 (e) =>
                   (e.lat || e.lng !== undefined) &&
                   filterValue.min <= Math.round(e.rateAverage) &&
-                  filterValue.max >= e.rateAverage && (
+                  filterValue.max >= Math.round(e.rateAverage) && (
                     <Marker
                       onClick={this.onMarkerClick}
                       key={`${e.lat} - ${e.long} - ${e.id}`}

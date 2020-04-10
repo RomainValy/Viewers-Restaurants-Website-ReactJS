@@ -31,18 +31,19 @@ class AddNewCommentForm extends React.Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value,
+      comment: e.target.value,
     });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log(this.state)
     this.addComment(this.state);
   };
 
   render() {
     return (
-      <div className='addCommentForm'>
+      <div className='addCommentForm container'>
         <h3>Notez votre expérience: </h3>
         <StarRatingComponent
           name='notationSystem'
@@ -61,6 +62,8 @@ class AddNewCommentForm extends React.Component {
               className='form-control'
               defaultValue={this.state.comment}
               id={this.props.restaurantName + "-comment"}
+              rows = "5"
+              cols = "33"
               onChange={this.handleChange}
             />
             <button

@@ -72,11 +72,10 @@ class NewRestoForm extends React.Component {
     return (
       <Context.Consumer>
         {({ restoList, addResto }) => (
-          <div className='newRestoForm'>
+          <div className='newRestoForm container'>
+            <h3>Votre établissement</h3>
             <form>
-              <h1>Votre établissement</h1>
-              <br />
-              <div className='form-group formStyle'>
+              <div className='form-group formStyleComment'>
                 <label htmlFor='restaurantName'> Nom de l'établissement </label>
                 <input
                   type='text'
@@ -85,17 +84,16 @@ class NewRestoForm extends React.Component {
                   id='restaurantName'
                   defaultValue={this.state.restaurantName}
                   onChange={this.handleChange}
+                  style ={{marginBottom: '30px', padding: '10px'}}
+                  size = '30'
                   required
                 />
-
-                <div>
                   <button
                     className='btn btn-primary submitForm'
                     onClick={this.handleSubmit}>
                     {" "}
                     +{" "}
                   </button>
-                </div>
               </div>
             </form>
             <button className='btn btn-danger close' onClick={this.closeModal}>
