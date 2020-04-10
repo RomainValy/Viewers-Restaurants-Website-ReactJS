@@ -18,7 +18,7 @@ class ImgRestaurant extends Component {
    * appel de Google.StreetView pour charger la photot correspondante
    */
   componentDidMount() {
-    const request = `https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${this.props.lat},${this.props.lng}&key=${this.props.ApiKey}`;
+    const request = `https://maps.googleapis.com/maps/api/streetview?size=400x300&location=${this.props.lat},${this.props.lng}&key=${this.props.ApiKey}`;
 
     axios
       .get(request)
@@ -45,7 +45,7 @@ class ImgRestaurant extends Component {
 
   render() {
     return (
-      <div style ={{marginTop: "20px", marginBottom: "20px"}}>
+      <div style ={{marginTop: "20px", marginBottom: "20px "}}>
         <img key={this.state.key} src={this.state.imgSrc} alt={"loading..."}></img>
       </div>
     );

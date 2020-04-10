@@ -2,21 +2,21 @@
 
 ## Présentation
 
-cette application permet à l'utilisateur de trouver plusieurs Restaurants géolocalisé autour de lui et d'obtenir diverses informations sur eux tel que:
+Cette application permet à l'utilisateur de trouver plusieurs Restaurants géolocalisés autour de lui et d'obtenir diverses informations sur eux tel que :
 - Nom
 - Adresse
 - Photo StreetView
-- note moyenne des commentaires laissé par les clients
-- les commentaires laissés par les clients.
+- Note moyenne des commentaires laissée par les clients
+- Les commentaires laissés par les clients.
 
-la carte se centre immédiatement sur l'utilisateur si ce dernier à autorisé a géolicalisation. 
-sinon, elle est centrée par défaut sur Paris.
+La carte se centre immédiatement sur l'utilisateur si ce dernier à autoriser a géolocalisation.
+Sinon, elle est centrée par défaut sur Paris.
 
-en cliquant sur la carte, l'utilisateur peu ajouter son restaurants. grace à l'API GEOCODER de Google, les coordonnées GPS sont transformé directements en adresse. il n'a alors qu'a renseigner le nom de son établisssement pour le voir s'afficher sur la carte.
+En cliquant sur la carte, l'utilisateur peut ajouter son restaurant. Grâce à l'API GÉOCODER de Google, les coordonnées GPS sont transformées directement en adresse. Il n'a alors qu'a renseigné le nom de son établissement pour le voir s'afficher sur la carte.
 
-Libre à lui d'ajouter un commentaire également sur le restaurants de son choix
+Libre à lui d'ajouter un commentaire également sur le restaurant de son choix
 
-enfin, un filtre lui permet de visuaiser les restaurants dont les moyennes sont entre un minimum (0) et un maximum (5).
+Enfin, un filtre lui permet de visualiser les restaurants dont les moyennes sont entre un minimum (0) et un maximum (5).
 
 ## Brief technique
 
