@@ -19,7 +19,10 @@ class RestoList extends React.Component {
       currentComments: [],
     };
   };
-
+  /**
+   * calcul la moyenne des commentaires et les arrondies à l'entier le plus proche
+   * @returns {number} valeur arrondie à l'entier le plus proche
+   */
   calculateRateAverage = (arr) => {
     let result = [];
     if (Array.isArray(arr) === true) {
@@ -37,6 +40,9 @@ class RestoList extends React.Component {
     }
   };
 
+  /**
+   * au click, enclenche la requete de l'API Google.Place.details
+   */
   activateImportComment = (element, google, map, addComment) => {
     if (this.state.idxShow === -1) {
       this.importCommentOnClick(element, google, map, addComment);
@@ -58,7 +64,7 @@ class RestoList extends React.Component {
       console.log("erreur du reseau :" + status);
     }
   };
-
+ /**requete API */
   importCommentOnClick = (e, google, map) => {
     const service = new google.maps.places.PlacesService(map);
 
@@ -72,7 +78,8 @@ class RestoList extends React.Component {
       this.onimportCommentOnClick.call(this, results, status, google)
     );
   };
-
+  
+  /**evenement qui masque ou affiche la section en fonction de this.state.idxShow */
   hideAndSick = (idx) => {
     this.state.idxShow === -1
       ? this.setState({ idxShow: idx })
@@ -118,6 +125,7 @@ class RestoList extends React.Component {
                   }
                   showDetails={idx === this.state.idxShow}>
                   <div className='comment-section'>
+                    {/**n'est affiché que si this.state.idxShow est differents de -1 */}
                     {this.state.idxShow !== -1 && (
                       <ImgRestaurant
                         lat={element.lat}

@@ -14,7 +14,9 @@ class ImgRestaurant extends Component {
       key: "",
     };
   }
-
+  /**
+   * appel de Google.StreetView pour charger la photot correspondante
+   */
   componentDidMount() {
     const request = `https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${this.props.lat},${this.props.lng}&key=${this.props.ApiKey}`;
 
@@ -23,7 +25,7 @@ class ImgRestaurant extends Component {
 
       .then((response) => {
         this.setState({
-          imgSrc: request,
+          imgSrc: response.config.url,
           key: JSON.stringify(request),
         });
       })

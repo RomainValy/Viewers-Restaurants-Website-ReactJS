@@ -111,7 +111,10 @@ export class MapContainer extends Component {
       });
     }
   };
-
+  /**
+   * stock les coordonnées de l'event target dans l'état local newRestoCoordinate
+   * puis ouvre le formulaire d'ajout de restaurant
+   */
   onMapClicked = (e, mapProps, map) => {
     this.closeInfoWindow();
 

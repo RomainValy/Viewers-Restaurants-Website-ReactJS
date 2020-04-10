@@ -1,3 +1,38 @@
+# I WANT TO EAT NOW
+
+## Présentation
+
+cette application permet à l'utilisateur de trouver plusieurs Restaurants géolocalisé autour de lui et d'obtenir diverses informations sur eux tel que:
+- Nom
+- Adresse
+- Photo StreetView
+- note moyenne des commentaires laissé par les clients
+- les commentaires laissés par les clients.
+
+la carte se centre immédiatement sur l'utilisateur si ce dernier à autorisé a géolicalisation. 
+sinon, elle est centrée par défaut sur Paris.
+
+en cliquant sur la carte, l'utilisateur peu ajouter son restaurants. grace à l'API GEOCODER de Google, les coordonnées GPS sont transformé directements en adresse. il n'a alors qu'a renseigner le nom de son établisssement pour le voir s'afficher sur la carte.
+
+Libre à lui d'ajouter un commentaire également sur le restaurants de son choix
+
+enfin, un filtre lui permet de visuaiser les restaurants dont les moyennes sont entre un minimum (0) et un maximum (5).
+
+## Brief technique
+
+cette application a été réalisé avec la librairie [React.js](https://fr.reactjs.org/).
+
+les API utilisés pour cette applications sont:
+
+- [Google Maps](https://developers.google.com/maps/documentation)
+- [Google places](https://developers.google.com/places/web-service/intro?hl=fr)
+- [Google geocoder](https://developers.google.com/maps/documentation/javascript/geocoding)
+
+en espérant que ce projet vous plaise.
+
+SEE YOU!
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
